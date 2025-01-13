@@ -3,6 +3,9 @@ import { useTranslation } from "react-i18next";
 import bd from '../../assets/logo/bd.png'
 import uk from '../../assets/logo/uk.png'
 import logo from '../../assets/logo/logo.jpg'
+import { IoHome } from "react-icons/io5";
+import { BsInfoCircleFill, BsPersonFillGear } from "react-icons/bs";
+import { IoMdContact } from "react-icons/io";
 
 const NavBar = () => {
 
@@ -26,21 +29,30 @@ const NavBar = () => {
        </div> 
       </div>
       {/* menu */}
-      <div className="">
-        {/* menuitem */}
+      <div className="flex justify-center items-center gap-6">
+        {/* menuitem desktop*/}
+        <div className="hidden ">
+           <ul className="flex font-medium cursor-pointer justify-center items-center gap-6">
+            <li className="flex items-center justify-center gap-1"><IoHome />{t('menu1')}</li>
+            <li className="flex items-center justify-center gap-1"> <BsPersonFillGear />{t('menu2')}</li>
+            <li className="flex items-center justify-center gap-1"><BsInfoCircleFill />{t('menu3')}</li>
+            <li className="flex items-center justify-center gap-1"><IoMdContact />{t('menu4')}</li>
+           </ul>
+        </div>
         <div className="">
-
+            <button className="bg-blue-800 hover:bg-opacity-60 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg">Login</button>
         </div>
         {/* change Language */}
         <div className="cursor-pointer">
           {
-            lang && <div onClick={()=> changeLanguage('en')} className="">
-             <img src={bd} alt="" className="w-12 h-12 rounded-full" />
+            lang && <div onClick={()=> changeLanguage('bn')} className="">
+             <img src={uk} alt="" className="w-12 h-12 rounded-full" />
             </div>
           }
           {
-            !lang && <div onClick={()=> changeLanguage('bn')} className="">  
-             <img src={uk} alt="" className="w-12 h-12 rounded-full" />
+            !lang && <div onClick={()=> changeLanguage('en')} className=""> 
+            <img src={bd} alt="" className="w-12 h-12 rounded-full" /> 
+             
             </div>
           }
 

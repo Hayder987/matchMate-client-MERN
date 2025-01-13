@@ -1,3 +1,6 @@
 {
-    "menu1": "Home"
-  }
+  "menu1": "Home",
+  "menu2": "Biodatas",
+  "menu3": "About Us",
+  "menu4": "Contact Us"
+}
