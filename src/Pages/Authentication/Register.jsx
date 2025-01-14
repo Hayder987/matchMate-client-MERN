@@ -5,9 +5,50 @@ import PageMargin from "../../Components/commonComponents/PageMargin";
 import loginBanner from "../../assets/images/loginBanner2.jpg";
 import banner from "../../assets/images/LoginBg.jpg";
 import { FaImage } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { t } = useTranslation();
+  const [imgPath, setImgPath] = useState('')
+  const [imgPreview, setImgPreview] = useState('');
+  const [errMessage, setErrMessage] = useState('')
+
+  useEffect(() => {
+    if (imgPath) {
+      const imageURL = URL.createObjectURL(imgPath);
+      setImgPreview(imageURL);
+      return () => URL.revokeObjectURL(imageURL);
+    }
+  }, [imgPath, setImgPreview]);
+
+  const registerHandler = async e =>{
+   e.preventDefault()
+   const form = e.target;
+   const name = form.name.value;
+   const email = form.email.value;
+   const password = form.password.value
+   setErrMessage('')
+
+   if(password.length<6){
+     setErrMessage('Password must be 6 digits')
+     return
+   }
+
+   if(!imgPath){
+    Swal.fire({
+        icon: "error",
+        title: "Please Upload Image!"
+    });
+    return
+   }
+
+
+  
+
+  }
+
+
   return (
     <div
       className="flex flex-col min-h-[calc(100vh-80px)]"
@@ -29,7 +70,7 @@ const Register = () => {
           {/* img */}
           <div className="lg:w-1/2 px-8">
             <img
-              src={loginBanner}
+              src={imgPreview?imgPreview:loginBanner}
               alt=""
               className="rounded-md w-full h-full"
             />
@@ -40,7 +81,7 @@ const Register = () => {
             <h1 className="text-white font-semibold text-2xl md:text-4xl mb-8">
               {t("Register")}
             </h1>
-            <form className="">
+            <form onSubmit={registerHandler} className="">
               {/* name */}
               <div className="mb-6">
                 <label className="text-white uppercase">{t("name")}</label>
@@ -49,7 +90,7 @@ const Register = () => {
                   type="text"
                   name="name"
                   required
-                  className="mt-1 w-full border-b-2 text-black border-blue-800 duration-300 py-1 focus:py-2 outline-none bg-transparent focus:bg-blue-100 px-4 shadow-sm"
+                  className="mt-1 w-full border-b-2 text-white focus:text-black border-blue-800 duration-300 py-1 focus:py-2 outline-none bg-transparent focus:bg-blue-100 px-4 shadow-sm"
                 />
               </div>
 
@@ -61,7 +102,7 @@ const Register = () => {
                   type="email"
                   name="email"
                   required
-                  className="mt-1 w-full border-b-2 text-black border-blue-800 duration-300 py-1 focus:py-2 outline-none bg-transparent focus:bg-blue-100 px-4 shadow-sm"
+                  className="mt-1 w-full border-b-2 text-white focus:text-black border-blue-800 duration-300 py-1 focus:py-2 outline-none bg-transparent focus:bg-blue-100 px-4 shadow-sm"
                 />
               </div>
               {/* password */}
@@ -72,17 +113,19 @@ const Register = () => {
                   type="password"
                   name="password"
                   required
-                  className="mt-1 w-full border-b-2 text-black border-blue-800 duration-300 py-1 focus:py-2 outline-none bg-transparent focus:bg-blue-100 px-4 shadow-sm"
+                  className="mt-1  w-full border-b-2 text-white focus:text-black border-blue-800 duration-300 py-1 focus:py-2 outline-none bg-transparent focus:bg-blue-100 px-4 shadow-sm"
                 />
+                {errMessage && <p className="text-red-500 py-2 font-semibold">{errMessage}</p>}
               </div>
+              
               {/* image Upload */}
               <div className="mb-6">
                 <label className="text-white uppercase">
                   <input
                     type="file"
-                    name="photo"
                     accept="image/*"
                     className="hidden"
+                    onChange={(e)=> setImgPath(e.target.files[0])}
                   />
                   <div className="border-2 flex items-center gap-3 border-dashed border-blue-800 p-2 px-4 cursor-pointer">
                   <span className=""><FaImage /></span> {t('uploadImg')} 
