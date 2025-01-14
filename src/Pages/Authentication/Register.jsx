@@ -15,7 +15,7 @@ const Register = () => {
   const [imgPath, setImgPath] = useState('')
   const [imgPreview, setImgPreview] = useState('');
   const [errMessage, setErrMessage] = useState('')
-  const {registerUser, updateUser, loading} = useAuth()
+  const {registerUser, updateUser, loading, googleLogin} = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Register = () => {
    if(!imgPath){
     Swal.fire({
         icon: "error",
-        title: "Please Upload Image!"
+        title: t('uploadImgSwal')
     });
     return
    }
@@ -50,12 +50,14 @@ const Register = () => {
     const photoPath = await imgUpload(imgPath)
     await registerUser(email, password)
     await updateUser(name, photoPath)
+    setImgPreview("")
+    setImgPath('')
     navigate('/')
     form.reset()
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "User Registration Successfully!",
+      title: t('registerSwal'),
       showConfirmButton: false,
       timer: 1500
     });
@@ -63,10 +65,31 @@ const Register = () => {
    catch(err){
     Swal.fire({
         icon: "error",
-        title:{err}
+        title: err.message || "An error occurred",
     });
    }
    
+  }
+
+  const googleLoginHandler= async()=>{
+    try{
+      await googleLogin()
+      navigate('/')
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: t('loginSwal'),
+        showConfirmButton: false,
+        timer: 1500
+      });
+     }
+     catch(err){
+      Swal.fire({
+          icon: "error",
+          title: err.message || "An error occurred",
+      });
+     }
+    
   }
 
 
@@ -167,7 +190,9 @@ const Register = () => {
               </span>
               <span className="h-px flex-1 bg-blue-800"></span>
             </span>
-            <button className="flex bg-blue-200 rounded-md font-semibold hover:bg-blue-800 hover:text-gray-100 justify-center items-center gap-2 p-3 w-full">
+            <button 
+            onClick={googleLoginHandler}
+            className="flex bg-blue-200 rounded-md font-semibold hover:bg-blue-800 hover:text-gray-100 justify-center items-center gap-2 p-3 w-full">
               <span className="text-2xl">
                 <FcGoogle />
               </span>

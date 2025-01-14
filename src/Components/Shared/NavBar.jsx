@@ -61,10 +61,10 @@ const NavBar = () => {
               <IoMdContact />
               {t("menu4")}
             </li>
-            <li className="flex items-center justify-center gap-1">
+            <NavLink to="dashboard"><li className="flex items-center justify-center gap-1">
               <MdDashboard />
               {t("menu5")}
-            </li>
+            </li></NavLink>
           </ul>
         </div>
         <div className="">

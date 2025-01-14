@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
 
   const loginUser = async (email, password) => {
     setLoading(true);
-    return await signInWithEmailAndPassword(email, password);
+    return await signInWithEmailAndPassword(auth, email, password);
   };
 
   const googleLogin = async()=>{

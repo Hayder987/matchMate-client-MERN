@@ -24,5 +24,8 @@
   "register" : "Register",
   "loginMisc3" : "Have An Account?" ,
   "loginMisc4" : "Login Now",
-  "uploadImg" : "Upload Image"
+  "uploadImg" : "Upload Image",
+  "registerSwal" : "User Registration Successfully!",
+  "loginSwal" : "User Login Successfully!",
+  "uploadImgSwal": "Please Upload Image!"
 }
