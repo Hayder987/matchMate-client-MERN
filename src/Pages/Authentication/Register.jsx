@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import PageMargin from "../../Components/commonComponents/PageMargin";
 import loginBanner from "../../assets/images/loginBanner2.jpg";
 import banner from "../../assets/images/LoginBg.jpg";
@@ -8,12 +8,15 @@ import { FaImage } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import imgUpload from "../../api/imgUpload";
+import useAuth from "../../Context/useAuth";
 
 const Register = () => {
   const { t } = useTranslation();
   const [imgPath, setImgPath] = useState('')
   const [imgPreview, setImgPreview] = useState('');
   const [errMessage, setErrMessage] = useState('')
+  const {registerUser, updateUser, loading} = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (imgPath) {
@@ -45,7 +48,17 @@ const Register = () => {
    }
    try{
     const photoPath = await imgUpload(imgPath)
-
+    await registerUser(email, password)
+    await updateUser(name, photoPath)
+    navigate('/')
+    form.reset()
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "User Registration Successfully!",
+      showConfirmButton: false,
+      timer: 1500
+    });
    }
    catch(err){
     Swal.fire({
@@ -142,8 +155,9 @@ const Register = () => {
               </div>
               <input
                 type="submit"
-                value={t("register")}
-                className="btn w-full cursor-pointer uppercase py-3 px-6"
+                disabled={loading}
+                value={loading?"Uploading...":t("register")}
+                className={`btn ${loading&& "hover:cursor-not-allowed"} w-full cursor-pointer uppercase py-3 px-6`}
               />
             </form>
             <span className="flex items-center">
