@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import bd from '../../assets/logo/bd.png'
-import uk from '../../assets/logo/uk.png'
-import logo from '../../assets/logo/logo.jpg'
+import bd from "../../assets/logo/bd.png";
+import uk from "../../assets/logo/uk.png";
+import logo from "../../assets/logo/logo.jpg";
 import { IoHome } from "react-icons/io5";
-import { BsInfoCircleFill} from "react-icons/bs";
+import { BsInfoCircleFill } from "react-icons/bs";
 import { IoMdContact } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 import { FaPerson } from "react-icons/fa6";
 import { FiLogIn } from "react-icons/fi";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 const NavBar = () => {
+  const navigate = useNavigate();
 
-
-  const [lang, setLang] = useState(true)
+  const [lang, setLang] = useState(true);
   const { t, i18n } = useTranslation();
   const changeLanguage = async (language) => {
-    setLang(!lang)
+    setLang(!lang);
     // localStorage.setItem("lang", language);
     await i18n.changeLanguage(language);
   };
@@ -26,42 +26,70 @@ const NavBar = () => {
     <div className="flex py-3 sticky top-0 z-10 bg-slate-50 bg-opacity-60 backdrop-blur-md px-2 md:px-6 justify-between items-center">
       {/* img */}
       <div className="">
-       <div className="flex justify-center items-center gap-3">
-        <img src={logo} alt="" className="w-10 h-10 md:w-14 md:h-14 rounded-full" />
-        <h1 className="text-xl md:text-3xl font-bold text-pink-500"><span className="text-blue-800">Match</span>Mate</h1>
-       </div> 
+        <div className="flex justify-center items-center gap-3">
+          <img
+            src={logo}
+            alt=""
+            className="w-10 h-10 md:w-14 md:h-14 rounded-full"
+          />
+          <h1 className="text-xl md:text-3xl font-bold text-pink-500">
+            <span className="text-blue-800">Match</span>Mate
+          </h1>
+        </div>
       </div>
       {/* menu */}
       <div className="flex justify-center items-center gap-3 md:gap-6">
         {/* menuitem desktop*/}
         <div className="hidden lg:flex ">
-           <ul className="flex font-medium cursor-pointer justify-center items-center gap-6">
-            <NavLink to='/'><li className="flex items-center justify-center gap-1"><IoHome />{t('menu1')}</li></NavLink>
-            <li className="flex items-center justify-center gap-1"> <FaPerson />{t('menu2')}</li>
-            <li className="flex items-center justify-center gap-1"><BsInfoCircleFill />{t('menu3')}</li>
-            <li className="flex items-center justify-center gap-1"><IoMdContact />{t('menu4')}</li>
-            <li className="flex items-center justify-center gap-1"><MdDashboard />{t('menu5')}</li>
-           </ul>
+          <ul className="flex font-medium cursor-pointer justify-center items-center gap-6">
+            <NavLink to="/">
+              <li className="flex items-center justify-center gap-1">
+                <IoHome />
+                {t("menu1")}
+              </li>
+            </NavLink>
+            <li className="flex items-center justify-center gap-1">
+              {" "}
+              <FaPerson />
+              {t("menu2")}
+            </li>
+            <li className="flex items-center justify-center gap-1">
+              <BsInfoCircleFill />
+              {t("menu3")}
+            </li>
+            <li className="flex items-center justify-center gap-1">
+              <IoMdContact />
+              {t("menu4")}
+            </li>
+            <li className="flex items-center justify-center gap-1">
+              <MdDashboard />
+              {t("menu5")}
+            </li>
+          </ul>
         </div>
         <div className="">
-            <button className="bg-blue-800 flex justify-center items-center gap-1 hover:bg-opacity-60 text-white font-semibold py-2  px-4 md:px-5 rounded-md">
-              <span className="text-xl"><FiLogIn /></span> {t('login')}
-            </button>
+          <button
+            onClick={() => navigate("/login")}
+            className="btn flex justify-center items-center gap-1  py-2  px-4 md:px-5"
+          >
+            <span className="text-xl">
+              <FiLogIn />
+            </span>{" "}
+            {t("login")}
+          </button>
         </div>
         {/* change Language */}
         <div className="cursor-pointer">
-          {
-            lang && <div onClick={()=> changeLanguage('bn')} className="">
-             <img src={uk} alt="" className="w-12 h-12 rounded-full" />
+          {lang && (
+            <div onClick={() => changeLanguage("bn")} className="">
+              <img src={uk} alt="" className="w-12 h-12 rounded-full" />
             </div>
-          }
-          {
-            !lang && <div onClick={()=> changeLanguage('en')} className=""> 
-            <img src={bd} alt="" className="w-12 h-12 rounded-full" /> 
-             
+          )}
+          {!lang && (
+            <div onClick={() => changeLanguage("en")} className="">
+              <img src={bd} alt="" className="w-12 h-12 rounded-full" />
             </div>
-          }
-
+          )}
         </div>
       </div>
     </div>

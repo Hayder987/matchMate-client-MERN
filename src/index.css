@@ -7,3 +7,15 @@
 body{
   font-family: "Poppins", serif;
 }
+
+.btn{
+  background-color: #1e40af;
+  color:white;
+  font-weight: 600;
+  border-radius: 6px;
+}
+.btn:hover{
+  background-color: #a2c7fd;
+  color:black
+}
+

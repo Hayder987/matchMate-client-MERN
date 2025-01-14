@@ -12,5 +12,12 @@
   "slide3h1": "The First Step to Forever",
   "slide3p1": "Explore. Engage. Embrace love with MatchMate.",
   "slide4h1": "Love Knows No Boundaries",
-  "slide4p1": "Join a community where relationships bloom naturally."
+  "slide4p1": "Join a community where relationships bloom naturally.",
+  "name" : "Name",
+  "email" : "Email",
+  "password" : "Password",
+  "or" : "OR, Login With",
+  "google": "Login With Google",
+  "loginMisc1" : "Don't Have Account?" ,
+  "loginMisc2" : "Register Now"
 }
