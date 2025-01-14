@@ -28,4 +28,5 @@
   "registerSwal" : "User Registration Successfully!",
   "loginSwal" : "User Login Successfully!",
   "uploadImgSwal": "Please Upload Image!"
+  
 }

@@ -34,7 +34,7 @@ const Login = () => {
         icon: "error",
         title: err.message || "An error occurred",
       });
-      console.log(err)
+      
     }
   };
 

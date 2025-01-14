@@ -10,9 +10,11 @@ import { MdDashboard } from "react-icons/md";
 import { FaPerson } from "react-icons/fa6";
 import { FiLogIn } from "react-icons/fi";
 import { NavLink, useNavigate } from "react-router";
+import useAuth from "../../Context/useAuth";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const { user, loading } = useAuth();
 
   const [lang, setLang] = useState(true);
   const { t, i18n } = useTranslation();
@@ -61,23 +63,33 @@ const NavBar = () => {
               <IoMdContact />
               {t("menu4")}
             </li>
-            <NavLink to="dashboard"><li className="flex items-center justify-center gap-1">
-              <MdDashboard />
-              {t("menu5")}
-            </li></NavLink>
+            {user && (
+              <NavLink to="dashboard">
+                <li className="flex items-center justify-center gap-1">
+                  <MdDashboard />
+                  {t("menu5")}
+                </li>
+              </NavLink>
+            )}
           </ul>
         </div>
-        <div className="">
-          <button
-            onClick={() => navigate("/login")}
-            className="btn flex justify-center items-center gap-1  py-2  px-4 md:px-5"
-          >
-            <span className="text-xl">
-              <FiLogIn />
-            </span>{" "}
-            {t("login")}
-          </button>
-        </div>
+        {loading ? (
+          ""
+        ) : (
+          <div className="">
+            {!user && (
+              <button
+                onClick={() => navigate("/login")}
+                className="btn flex justify-center items-center gap-1  py-2  px-4 md:px-5"
+              >
+                <span className="text-xl">
+                  <FiLogIn />
+                </span>{" "}
+                {t("login")}
+              </button>
+            )}
+          </div>
+        )}
         {/* change Language */}
         <div className="cursor-pointer">
           {lang && (

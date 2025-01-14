@@ -18,4 +18,7 @@ body{
   background-color: #a2c7fd;
   color:black
 }
+ul .active{
+  color:rgb(236, 72, 153)
+}
 
