@@ -19,5 +19,10 @@
   "or" : "OR, Login With",
   "google": "Login With Google",
   "loginMisc1" : "Don't Have Account?" ,
-  "loginMisc2" : "Register Now"
+  "loginMisc2" : "Register Now",
+  "Register" : "Register Here",
+  "register" : "Register",
+  "loginMisc3" : "Have An Account?" ,
+  "loginMisc4" : "Login Now",
+  "uploadImg" : "Upload Image"
 }

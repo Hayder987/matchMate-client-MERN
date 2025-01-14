@@ -25,9 +25,9 @@ const Login = () => {
       }}
     >
       <PageMargin>
-        <div className="flex flex-col lg:flex-row gap-4 lg:max-w-[1000px] mx-auto rounded-lg justify-center bg-black bg-opacity-40 p-6 md:p-10 ">
+        <div className="flex flex-col lg:flex-row gap-4 lg:max-w-[1000px] mx-auto rounded-lg justify-center bg-black bg-opacity-30 p-6 md:p-10 ">
           {/* img */}
-          <div className="lg:w-1/2 p-8">
+          <div className="lg:w-1/2 px-8">
             <img
               src={loginBanner}
               alt=""
@@ -74,7 +74,7 @@ const Login = () => {
             </span>
             <button className="flex bg-blue-200 rounded-md font-semibold hover:bg-blue-800 hover:text-gray-100 justify-center items-center gap-2 p-3 w-full">
                 <span className="text-2xl"><FcGoogle /></span>
-                <span className="">{t('google')}</span>
+                <span className="uppercase">{t('google')}</span>
             </button>
             <p className="mt-6 text-gray-100 text-center">
                 <span className="">{t('loginMisc1')}</span>
