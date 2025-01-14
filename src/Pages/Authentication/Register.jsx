@@ -7,6 +7,7 @@ import banner from "../../assets/images/LoginBg.jpg";
 import { FaImage } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import imgUpload from "../../api/imgUpload";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -42,10 +43,17 @@ const Register = () => {
     });
     return
    }
+   try{
+    const photoPath = await imgUpload(imgPath)
 
-
-  
-
+   }
+   catch(err){
+    Swal.fire({
+        icon: "error",
+        title:{err}
+    });
+   }
+   
   }
 
 
@@ -68,7 +76,7 @@ const Register = () => {
       <PageMargin>
         <div className="flex flex-col lg:flex-row gap-4 lg:max-w-[1000px] mx-auto rounded-lg justify-center bg-black bg-opacity-30 p-6 md:p-10 ">
           {/* img */}
-          <div className="lg:w-1/2 px-8">
+          <div className="lg:w-1/2 px-3">
             <img
               src={imgPreview?imgPreview:loginBanner}
               alt=""
