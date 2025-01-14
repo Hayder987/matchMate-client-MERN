@@ -4,13 +4,16 @@ import bd from '../../assets/logo/bd.png'
 import uk from '../../assets/logo/uk.png'
 import logo from '../../assets/logo/logo.jpg'
 import { IoHome } from "react-icons/io5";
-import { BsInfoCircleFill, BsPersonFillGear } from "react-icons/bs";
+import { BsInfoCircleFill} from "react-icons/bs";
 import { IoMdContact } from "react-icons/io";
+import { MdDashboard } from "react-icons/md";
+import { FaPerson } from "react-icons/fa6";
+import { FiLogIn } from "react-icons/fi";
+import { NavLink } from "react-router";
 
 const NavBar = () => {
 
 
-  // translation function
   const [lang, setLang] = useState(true)
   const { t, i18n } = useTranslation();
   const changeLanguage = async (language) => {
@@ -20,7 +23,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="flex py-3 px-2 md:px-6 justify-between items-center">
+    <div className="flex py-3 sticky top-0 z-10 bg-slate-50 bg-opacity-60 backdrop-blur-md px-2 md:px-6 justify-between items-center">
       {/* img */}
       <div className="">
        <div className="flex justify-center items-center gap-3">
@@ -29,18 +32,21 @@ const NavBar = () => {
        </div> 
       </div>
       {/* menu */}
-      <div className="flex justify-center items-center gap-6">
+      <div className="flex justify-center items-center gap-3 md:gap-6">
         {/* menuitem desktop*/}
-        <div className="hidden ">
+        <div className="hidden lg:flex ">
            <ul className="flex font-medium cursor-pointer justify-center items-center gap-6">
-            <li className="flex items-center justify-center gap-1"><IoHome />{t('menu1')}</li>
-            <li className="flex items-center justify-center gap-1"> <BsPersonFillGear />{t('menu2')}</li>
+            <NavLink to='/'><li className="flex items-center justify-center gap-1"><IoHome />{t('menu1')}</li></NavLink>
+            <li className="flex items-center justify-center gap-1"> <FaPerson />{t('menu2')}</li>
             <li className="flex items-center justify-center gap-1"><BsInfoCircleFill />{t('menu3')}</li>
             <li className="flex items-center justify-center gap-1"><IoMdContact />{t('menu4')}</li>
+            <li className="flex items-center justify-center gap-1"><MdDashboard />{t('menu5')}</li>
            </ul>
         </div>
         <div className="">
-            <button className="bg-blue-800 hover:bg-opacity-60 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg">Login</button>
+            <button className="bg-blue-800 flex justify-center items-center gap-1 hover:bg-opacity-60 text-white font-semibold py-2  px-4 md:px-5 rounded-md">
+              <span className="text-xl"><FiLogIn /></span> {t('login')}
+            </button>
         </div>
         {/* change Language */}
         <div className="cursor-pointer">

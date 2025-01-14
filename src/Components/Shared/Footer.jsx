@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
-        <div>
-            Footer Component
+        <div className="py-32">
+            
         </div>
     );
 };
