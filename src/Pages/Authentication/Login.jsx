@@ -3,7 +3,7 @@ import loginBanner from "../../assets/images/loginBanner2.jpg";
 import banner from "../../assets/images/LoginBg.jpg";
 import { useTranslation } from "react-i18next";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../Context/useAuth";
 
@@ -11,12 +11,15 @@ const Login = () => {
   const { t } = useTranslation();
   const { loginUser, googleLogin } = useAuth();
   const navigate = useNavigate()
+  const {state} = useLocation()
+  const form = state || "/"
 
   const loginHandler = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    
 
     try {
       await loginUser(email, password);
@@ -27,7 +30,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate('/')
+      navigate(form)
 
     } catch (err) {
       Swal.fire({
@@ -41,7 +44,7 @@ const Login = () => {
   const googleLoginHandler= async()=>{
       try{
         await googleLogin()
-        navigate('/')
+        navigate(form)
         Swal.fire({
           position: "top-end",
           icon: "success",
