@@ -12,7 +12,7 @@ const Login = () => {
   const { loginUser, googleLogin } = useAuth();
   const navigate = useNavigate()
   const {state} = useLocation()
-  const form = state || "/"
+  const goto = state || "/"
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -22,7 +22,8 @@ const Login = () => {
     
 
     try {
-      await loginUser(email, password);
+      await loginUser(email, password)
+      navigate(goto)
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -30,8 +31,6 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate(form)
-
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -44,7 +43,7 @@ const Login = () => {
   const googleLoginHandler= async()=>{
       try{
         await googleLogin()
-        navigate(form)
+        navigate(goto)
         Swal.fire({
           position: "top-end",
           icon: "success",
