@@ -10,7 +10,7 @@ const useUserData = () => {
     const {data:userData=[]} = useQuery({
         queryKey: ['userData', user?.email],
         queryFn: async()=>{
-         const {data} = serverUrl.get(`/userData/${user?.email}`)
+         const {data} = await serverUrl.get(`/userData/${user?.email}`)
          return data
         }
     })

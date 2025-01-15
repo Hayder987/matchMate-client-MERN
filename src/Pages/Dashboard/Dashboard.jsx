@@ -4,14 +4,17 @@ import useAuth from "../../Context/useAuth";
 import logo from "../../assets/logo/logo.jpg";
 import { FaStreetView } from "react-icons/fa6";
 import { RiContactsBook3Fill } from "react-icons/ri";
-import { MdOutlineFavorite } from "react-icons/md";
+import { MdDashboardCustomize, MdManageAccounts, MdOutlineFavorite, MdWorkspacePremium } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
 import Swal from "sweetalert2";
 import { NavLink, Outlet, useNavigate } from "react-router";
+import useUserData from "../../hooks/data/useUserData";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
   const navigate = useNavigate();
+  const [userData] = useUserData();
+  console.log(userData)
 
   const logOutHandler = async () => {
     try {
@@ -19,7 +22,7 @@ const Dashboard = () => {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: 'User Logout Successfully',
+        title: "User Logout Successfully",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -46,21 +49,62 @@ const Dashboard = () => {
           </div>
           {/* dashmenu user */}
           <div className="flex flex-col justify-between min-h-[60vh] py-10">
-            <div className="mb-20">
-              <ul className="text-gray-100 flex flex-col gap-6 cursor-pointer font-semibold">
-                <NavLink to='editBio'><li className="flex items-center gap-2">
-                  <FaEdit /> Edit Biodata
-                </li></NavLink>
-                <NavLink to='viewBio'><li className="flex items-center gap-2">
-                  <FaStreetView /> View Biodata
-                </li></NavLink>
-               <NavLink to='contactreq'> <li className="flex items-center gap-2">
-                  <RiContactsBook3Fill /> My Contact Request
-                </li></NavLink>
-                <NavLink to='favorite'><li className="flex items-center gap-2">
-                  <MdOutlineFavorite /> Favorites Biodata
-                </li></NavLink>
-              </ul>
+            <div className="">
+              {userData?.role === "admin" ? (
+                // admin route------------------------->
+                <div className="mb-20">
+                   <ul className="text-gray-100 flex flex-col gap-6 cursor-pointer font-semibold">
+                    <NavLink to="adminDashBoard">
+                      <li className="flex items-center gap-2">
+                      <MdDashboardCustomize /> Admin Dashboard
+                      </li>
+                    </NavLink>
+                    <NavLink to="manageUser">
+                      <li className="flex items-center gap-2">
+                      <MdManageAccounts /> Manage Users
+                      </li>
+                    </NavLink>
+                    <NavLink to="approvedPrimeum">
+                      {" "}
+                      <li className="flex items-center gap-2">
+                      <MdWorkspacePremium /> Approved Premium
+                      </li>
+                    </NavLink>
+                    <NavLink to="approvedContact">
+                      <li className="flex items-center gap-2">
+                      <RiContactsBook3Fill /> Approved Contact Request
+                      </li>
+                    </NavLink>
+                  </ul>
+                </div>
+              ) : (
+                <div className="mb-20">
+                  {/* user Route */}
+                  <ul className="text-gray-100 flex flex-col gap-6 cursor-pointer font-semibold">
+                    <NavLink to="editBio">
+                      <li className="flex items-center gap-2">
+                        <FaEdit /> Edit Biodata
+                      </li>
+                    </NavLink>
+                    <NavLink to="viewBio">
+                      <li className="flex items-center gap-2">
+                        <FaStreetView /> View Biodata
+                      </li>
+                    </NavLink>
+                    <NavLink to="contactreq">
+                      {" "}
+                      <li className="flex items-center gap-2">
+                        <RiContactsBook3Fill /> My Contact Request
+                      </li>
+                    </NavLink>
+                    <NavLink to="favorite">
+                      <li className="flex items-center gap-2">
+                        <MdOutlineFavorite /> Favorites Biodata
+                      </li>
+                    </NavLink>
+                  </ul>
+                </div>
+              )}
             </div>
             <div className="">
               <button
@@ -77,7 +121,7 @@ const Dashboard = () => {
         </div>
         {/* content */}
         <div className="lg:w-10/12 bg-white p-6">
-        <Outlet></Outlet>
+          <Outlet></Outlet>
         </div>
       </div>
     </PageMargin>

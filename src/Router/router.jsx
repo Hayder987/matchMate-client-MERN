@@ -10,6 +10,10 @@ import EditBioData from "../Pages/Dashboard/userPrivate/EditBioData";
 import ViewBioData from "../Pages/Dashboard/userPrivate/ViewBioData";
 import ContactRequest from "../Pages/Dashboard/userPrivate/ContactRequest";
 import FavoriteBio from "../Pages/Dashboard/userPrivate/FavoriteBio";
+import AdminDashBoard from "../Pages/Dashboard/adminPrivate/AdminDashBoard";
+import ManageUser from "../Pages/Dashboard/adminPrivate/ManageUser";
+import ApprovedPrimum from "../Pages/Dashboard/adminPrivate/ApprovedPrimum";
+import ApprovedConatct from "../Pages/Dashboard/adminPrivate/ApprovedConatct";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +31,11 @@ export const router = createBrowserRouter([
                    {path:'viewBio', element:<PrivateRoute><ViewBioData></ViewBioData></PrivateRoute>},
                    {path:"contactreq", element:<PrivateRoute><ContactRequest></ContactRequest></PrivateRoute>},
                    {path:'favorite', element:<PrivateRoute><FavoriteBio></FavoriteBio></PrivateRoute>}, 
+                   //    admin Route
+                   {path:'adminDashBoard', element:<AdminDashBoard></AdminDashBoard>},
+                   {path:'manageUser', element:<ManageUser></ManageUser>},
+                   {path:'approvedPrimeum', element:<ApprovedPrimum></ApprovedPrimum>},
+                   {path:'approvedContact', element:<ApprovedConatct></ApprovedConatct>}
                 ]
             },
         ]
