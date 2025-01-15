@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useAuth from "../../Context/useAuth";
+import { MdOutlineInsertPhoto } from "react-icons/md";
+import imgUpload from "../../api/imgUpload";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
 
 const height = [];
 
@@ -42,13 +47,84 @@ const AddBioData = () => {
   const [age, setAge] = useState("");
   const [partenerAge, setPartnerAge] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const { user } = useAuth();
+  const [imgPath, setImgPath] = useState("");
+  const [imgPreview, setImgPreview] = useState("");
+  const axiosUrl = useAxiosSecure()
+
+  useEffect(() => {
+    if (imgPath) {
+      const imageURL = URL.createObjectURL(imgPath);
+      setImgPreview(imageURL);
+      return () => URL.revokeObjectURL(imageURL);
+    }
+  }, [imgPath, setImgPreview]);
+
+  const addBioDataHandler = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const biodataType = form.biodataType.value;
+    const name = form.name.value;
+    const height = form.height.value;
+    const weight = form.weight.value;
+    const race = form.race.value;
+    const presentDivision = form.presentDivision.value;
+    const permanentDivision = form.permanentDivision.value;
+    const occupation = form.occupation.value;
+    const mobileNumber = form.mobileNumber.value;
+    const fathername = form.fathername.value;
+    const mothername = form.mothername.value;
+    const expectedHeight = form.expectedHeight.value;
+    const expectedWeight = form.expectedWeight.value;
+    const email = form.email.value;
+
+    const bioData = {
+      biodataType,
+      info: {
+        name,
+        fathername,
+        mothername,
+        height,
+        weight,
+        race,
+        age,
+        birthDate: startDate,
+        presentDivision,
+        permanentDivision,
+        occupation,
+        mobileNumber,
+      },
+      expectedHeight,
+      expectedWeight,
+      email,
+      partenerAge,
+    };
+
+    if (!imgPath) {
+      Swal.fire({
+        icon: "error",
+        title: "Please Upload Photo",
+      });
+      return;
+    }
+
+    try {
+      const image = await imgUpload(imgPath);
+      console.log({ ...bioData, image });
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: err.message || "An error occurred",
+      });
+    }
+  };
 
   return (
     <div className="px-1 md:px-4 lg:px-16">
       <h1 className="md:text-2xl font-medium text-center mb-8 text-gray-800 ">
         You Have No BioData ! Create First
       </h1>
-      <form className="">
+      <form onSubmit={addBioDataHandler} className="">
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
           {/* d-1 */}
           <div className="lg:w-1/2 flex flex-col gap-4">
@@ -60,7 +136,9 @@ const AddBioData = () => {
                 required
                 className="border w-full px-3 py-2 bg-blue-100"
               >
-                <option value="">Biodata Type</option>
+                <option disabled value="">
+                  Biodata Type
+                </option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
@@ -144,7 +222,7 @@ const AddBioData = () => {
                 ))}
               </select>
             </div>
-            {/* presen */}
+            {/* present */}
             <div className="w-full">
               <label className="block font-medium mb-2">Present Division</label>
               <select
@@ -287,7 +365,7 @@ const AddBioData = () => {
               </label>
               <input
                 type="number"
-                name="partnerage"
+                name="partnerAge"
                 min={1}
                 max={99}
                 value={partenerAge}
@@ -310,6 +388,7 @@ const AddBioData = () => {
           <input
             type="email"
             name="email"
+            value={user?.email}
             readOnly
             required
             className=" w-full px-3 py-2 hover:cursor-not-allowed bg-blue-100"
@@ -317,22 +396,48 @@ const AddBioData = () => {
         </div>
         {/* upload images */}
         <div className="flex flex-col lg:flex-row gap-4 ">
-            {/* upload */}
-            <div className="lg:w-1/2 ">
-              <label className="block font-medium mb-2 mt-4">
-                <input type="file" className="w-full hidden" accept="image/*" name="photo" />
-                <div className="border-2 border-dashed w-full cursor-pointer  p-4 ">
-                    <p className="text-center py-3 bg-blue-800 text-white font-semibold">Upload Image</p>
-                </div>
-              </label>
-            </div>
-            {/* preview */}
-            <div className="lg:w-1/2 py-3 mt-1">
-              <div className="w-full border h-full">
-                
+          {/* upload */}
+          <div className="lg:w-1/2 ">
+            <label className="block font-medium mb-2 mt-4">
+              <input
+                type="file"
+                className="w-full hidden"
+                accept="image/*"
+                name="photo"
+                onChange={(e) => setImgPath(e.target.files[0])}
+              />
+              <div className="border-2 border-dashed w-full cursor-pointer  p-4 ">
+                <p className="text-center py-3 bg-blue-800 text-white font-semibold">
+                  Upload Image
+                </p>
               </div>
+            </label>
+          </div>
+          {/* preview */}
+          <div className="lg:w-1/2 py-3 mt-1">
+            <div className="w-full flex justify-center items-center border max-h-[90px]">
+              {imgPreview ? (
+                <img
+                  src={imgPreview}
+                  alt=""
+                  className="max-w-[100px] max-h-[80px]"
+                />
+              ) : (
+                <p className="text-center flex py-3 items-center text-6xl">
+                  <MdOutlineInsertPhoto />
+                  <span className="text-base">Image Preview</span>
+                </p>
+              )}
             </div>
           </div>
+        </div>
+        <div className="flex justify-center">
+          <input
+            type="submit"
+            value="Save And Publish Now "
+            className="p-3 bg-blue-800 font-semibold cursor-pointer mt-3 text-white w-full rounded-none"
+          />
+        </div>
       </form>
     </div>
   );
