@@ -7,14 +7,14 @@ const useUserData = () => {
     const {user} = useAuth()
     const serverUrl = useAxiosPublic()
 
-    const {data:userData=[], isLoading} = useQuery({
+    const {data:userData=[], isLoading, refetch} = useQuery({
         queryKey: ['userData', user?.email],
         queryFn: async()=>{
          const {data} = await serverUrl.get(`/userData/${user?.email}`)
          return data
         }
     })
-    return [userData, isLoading]
+    return [userData, isLoading, refetch]
 };
 
 export default useUserData;

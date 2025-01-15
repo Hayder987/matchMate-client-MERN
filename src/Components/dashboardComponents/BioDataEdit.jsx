@@ -46,7 +46,7 @@ const BioDataEdit = () => {
   return (
     <div className="px-1 md:px-4 lg:px-16">
       <h1 className="md:text-2xl font-medium text-center mb-8 text-gray-800 ">
-        You Can Edit Your BioData Here
+         Edit Your BioData Here
       </h1>
       <form className="">
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">

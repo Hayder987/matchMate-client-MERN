@@ -43,14 +43,14 @@ const divisions = [
   "Sylhet",
 ];
 
-const AddBioData = () => {
+const AddBioData = ({ refetch }) => {
   const [age, setAge] = useState("");
   const [partenerAge, setPartnerAge] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useAuth();
   const [imgPath, setImgPath] = useState("");
   const [imgPreview, setImgPreview] = useState("");
-  const axiosUrl = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (imgPath) {
@@ -110,7 +110,21 @@ const AddBioData = () => {
 
     try {
       const image = await imgUpload(imgPath);
-      console.log({ ...bioData, image });
+      await axiosSecure.post(`/bioData`, { ...bioData, image });
+      refetch();
+      form.reset();
+      setPartnerAge("");
+      setAge("");
+      setStartDate(new Date());
+      setImgPath("");
+      setImgPreview("");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your BioData Added SuccessFully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (err) {
       Swal.fire({
         icon: "error",
