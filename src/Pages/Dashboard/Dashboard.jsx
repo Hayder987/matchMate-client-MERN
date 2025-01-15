@@ -7,7 +7,7 @@ import { RiContactsBook3Fill } from "react-icons/ri";
 import { MdOutlineFavorite } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
+import { NavLink, Outlet, useNavigate } from "react-router";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
@@ -48,18 +48,18 @@ const Dashboard = () => {
           <div className="flex flex-col justify-between min-h-[60vh] py-10">
             <div className="mb-20">
               <ul className="text-gray-100 flex flex-col gap-6 cursor-pointer font-semibold">
-                <li className="flex items-center gap-2">
+                <NavLink to='editBio'><li className="flex items-center gap-2">
                   <FaEdit /> Edit Biodata
-                </li>
-                <li className="flex items-center gap-2">
+                </li></NavLink>
+                <NavLink to='viewBio'><li className="flex items-center gap-2">
                   <FaStreetView /> View Biodata
-                </li>
-                <li className="flex items-center gap-2">
+                </li></NavLink>
+               <NavLink to='contactreq'> <li className="flex items-center gap-2">
                   <RiContactsBook3Fill /> My Contact Request
-                </li>
-                <li className="flex items-center gap-2">
+                </li></NavLink>
+                <NavLink to='favorite'><li className="flex items-center gap-2">
                   <MdOutlineFavorite /> Favorites Biodata
-                </li>
+                </li></NavLink>
               </ul>
             </div>
             <div className="">
@@ -76,7 +76,9 @@ const Dashboard = () => {
           </div>
         </div>
         {/* content */}
-        <div className="lg:w-10/12 bg-white"></div>
+        <div className="lg:w-10/12 bg-white p-6">
+        <Outlet></Outlet>
+        </div>
       </div>
     </PageMargin>
   );
