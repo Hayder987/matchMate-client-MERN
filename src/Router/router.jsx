@@ -14,8 +14,11 @@ import AdminDashBoard from "../Pages/Dashboard/adminPrivate/AdminDashBoard";
 import ManageUser from "../Pages/Dashboard/adminPrivate/ManageUser";
 import ApprovedPrimum from "../Pages/Dashboard/adminPrivate/ApprovedPrimum";
 import ApprovedConatct from "../Pages/Dashboard/adminPrivate/ApprovedConatct";
+ 
+
 
 export const router = createBrowserRouter([
+    
     {
         path:'/',
         element: <MainLayout></MainLayout>,
@@ -27,15 +30,18 @@ export const router = createBrowserRouter([
             {path:"dashboard", 
                 element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children:[
+                //    { index: true, element: <PrivateRoute><ViewBioData /></PrivateRoute> },
                    {path:'editBio', element:<PrivateRoute><EditBioData></EditBioData></PrivateRoute>},
                    {path:'viewBio', element:<PrivateRoute><ViewBioData></ViewBioData></PrivateRoute>},
                    {path:"contactreq", element:<PrivateRoute><ContactRequest></ContactRequest></PrivateRoute>},
                    {path:'favorite', element:<PrivateRoute><FavoriteBio></FavoriteBio></PrivateRoute>}, 
                    //    admin Route
+                   {index: true, element:<AdminDashBoard></AdminDashBoard>},
                    {path:'adminDashBoard', element:<AdminDashBoard></AdminDashBoard>},
                    {path:'manageUser', element:<ManageUser></ManageUser>},
                    {path:'approvedPrimeum', element:<ApprovedPrimum></ApprovedPrimum>},
-                   {path:'approvedContact', element:<ApprovedConatct></ApprovedConatct>}
+                   {path:'approvedContact', element:<ApprovedConatct></ApprovedConatct>},
+                   
                 ]
             },
         ]
