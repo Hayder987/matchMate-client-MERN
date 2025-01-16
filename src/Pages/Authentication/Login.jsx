@@ -13,7 +13,6 @@ const Login = () => {
   const navigate = useNavigate()
   const {state} = useLocation()
   const goto = state || "/"
-
   const loginHandler = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,6 +22,7 @@ const Login = () => {
 
     try {
       await loginUser(email, password)
+      
       navigate(goto)
       Swal.fire({
         position: "top-end",

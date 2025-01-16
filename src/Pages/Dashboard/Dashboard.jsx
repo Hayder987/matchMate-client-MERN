@@ -13,7 +13,7 @@ import useUserData from "../../hooks/data/useUserData";
 const Dashboard = () => {
   const { logOutUser } = useAuth();
   const navigate = useNavigate();
-  const [userData] = useUserData();
+  const [userData, refetch] = useUserData();
   console.log(userData)
 
   const logOutHandler = async () => {

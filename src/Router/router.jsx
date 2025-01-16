@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
                    {path:"contactreq", element:<PrivateRoute><ContactRequest></ContactRequest></PrivateRoute>},
                    {path:'favorite', element:<PrivateRoute><FavoriteBio></FavoriteBio></PrivateRoute>}, 
                    //    admin Route
-                   {index: true, element:<AdminDashBoard></AdminDashBoard>},
+                //    {index: true, element:<AdminDashBoard></AdminDashBoard>},
                    {path:'adminDashBoard', element:<AdminDashBoard></AdminDashBoard>},
                    {path:'manageUser', element:<ManageUser></ManageUser>},
                    {path:'approvedPrimeum', element:<ApprovedPrimum></ApprovedPrimum>},
