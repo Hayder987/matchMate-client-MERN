@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useAuth from "../../Context/useAuth";
+import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import LoaderSpinner from "../commonComponents/LoaderSpinner";
+import imgUpload from "../../api/imgUpload";
+import Swal from "sweetalert2";
 
 const height = [];
 
@@ -41,14 +47,99 @@ const divisions = [
 const BioDataEdit = () => {
   const [age, setAge] = useState("");
   const [partenerAge, setPartnerAge] = useState("");
+  const { user } = useAuth();
   const [startDate, setStartDate] = useState(new Date());
+  const [imgPath, setImgPath] = useState("");
+  const [imgPreview, setImgPreview] = useState("");
+  const axiosSecure = useAxiosSecure();
+
+  const { data: userBio = {}, isLoading } = useQuery({
+    queryKey: ["userBio", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/userBio/${user?.email}`);
+      setStartDate(data?.info?.birthDate);
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    if (imgPath) {
+      const imageURL = URL.createObjectURL(imgPath);
+      setImgPreview(imageURL);
+      return () => URL.revokeObjectURL(imageURL);
+    }
+  }, [imgPath, setImgPreview]);
+
+  if (isLoading) {
+    return <LoaderSpinner></LoaderSpinner>;
+  }
+
+  const editBioHandler = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const biodataType = form.biodataType.value;
+    const name = form.name.value;
+    const height = form.height.value;
+    const weight = form.weight.value;
+    const race = form.race.value;
+    const presentDivision = form.presentDivision.value;
+    const permanentDivision = form.permanentDivision.value;
+    const occupation = form.occupation.value;
+    const mobileNumber = form.mobileNumber.value;
+    const fathername = form.fathername.value;
+    const mothername = form.mothername.value;
+    const expectedHeight = form.expectedHeight.value;
+    const expectedWeight = form.expectedWeight.value;
+    const email = form.email.value;
+
+    const bioData = {
+        biodataType,
+        info: {
+          name,
+          fathername,
+          mothername,
+          height,
+          weight,
+          race,
+          age,
+          birthDate: startDate,
+          presentDivision,
+          permanentDivision,
+          occupation,
+          mobileNumber,
+        },
+        expectedHeight,
+        expectedWeight,
+        email,
+        partenerAge,
+      };
+
+      try {
+        const userImage = imgPath && await imgUpload(imgPath);
+        await axiosSecure.patch(`/userBio/${user?.email}`, { ...bioData, image:userImage?userImage:userBio?.image });
+        setImgPath("");
+        setImgPreview("");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your BioData Update SuccessFully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (err) {
+        Swal.fire({
+          icon: "error",
+          title: err.message || "An error occurred",
+        });
+      }
+  };
 
   return (
     <div className="px-1 md:px-4 lg:px-16">
       <h1 className="md:text-2xl font-medium text-center mb-8 text-gray-800 ">
-         Edit Your BioData Here
+        Edit Your BioData Here
       </h1>
-      <form className="">
+      <form onSubmit={editBioHandler} className="">
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
           {/* d-1 */}
           <div className="lg:w-1/2 flex flex-col gap-4">
@@ -57,7 +148,7 @@ const BioDataEdit = () => {
               <label className="block font-medium mb-2">Biodata Type</label>
               <select
                 name="biodataType"
-                required
+                value={userBio?.biodataType}
                 className="border w-full px-3 py-2 bg-blue-100"
               >
                 <option value="">Biodata Type</option>
@@ -71,8 +162,8 @@ const BioDataEdit = () => {
               <input
                 type="text"
                 name="name"
+                defaultValue={userBio?.info?.name}
                 placeholder="Enter Name"
-                required
                 className=" w-full px-3 py-2 bg-blue-100"
               />
             </div>
@@ -81,7 +172,7 @@ const BioDataEdit = () => {
               <label className="block font-medium mb-2">Height</label>
               <select
                 name="height"
-                required
+                defaultValue={userBio?.info?.height}
                 className=" bg-blue-100 w-full px-3 py-2"
               >
                 <option value="">Height</option>
@@ -97,7 +188,7 @@ const BioDataEdit = () => {
               <label className="block font-medium mb-2">Weight</label>
               <select
                 name="weight"
-                required
+                defaultValue={userBio?.info?.weight}
                 className=" w-full bg-blue-100 px-3 py-2"
               >
                 <option value="">Weight</option>
@@ -116,7 +207,7 @@ const BioDataEdit = () => {
                 name="age"
                 min={1}
                 max={99}
-                value={age}
+                defaultValue={userBio?.info?.age}
                 onChange={(e) => {
                   const value = e.target.value;
                   if (value.length <= 2) {
@@ -124,7 +215,6 @@ const BioDataEdit = () => {
                   }
                 }}
                 placeholder="Enter Age"
-                required
                 className="border w-full px-3 py-2 bg-blue-100"
               />
             </div>
@@ -133,7 +223,7 @@ const BioDataEdit = () => {
               <label className="block font-medium mb-2">Skin Color</label>
               <select
                 name="race"
-                required
+                defaultValue={userBio?.info?.race}
                 className="border w-full px-3 py-2 bg-blue-100"
               >
                 <option value="">Skin Color</option>
@@ -149,7 +239,7 @@ const BioDataEdit = () => {
               <label className="block font-medium mb-2">Present Division</label>
               <select
                 name="presentDivision"
-                required
+                defaultValue={userBio?.info?.presentDivision}
                 className="border w-full px-3 py-2 bg-blue-100"
               >
                 <option value="">Present Division</option>
@@ -167,7 +257,7 @@ const BioDataEdit = () => {
               </label>
               <select
                 name="permanentDivision"
-                required
+                defaultValue={userBio?.info?.permanentDivision}
                 className="border w-full px-3 py-2 bg-blue-100"
               >
                 <option value="">Permanent Division</option>
@@ -187,7 +277,7 @@ const BioDataEdit = () => {
               <label className="block font-medium mb-2">Occupation</label>
               <select
                 name="occupation"
-                required
+                defaultValue={userBio?.info?.occupation}
                 className="border w-full px-3 py-2 bg-blue-100"
               >
                 <option value="">Select Occupation</option>
@@ -204,7 +294,7 @@ const BioDataEdit = () => {
               <input
                 type="tel"
                 name="mobileNumber"
-                required
+                defaultValue={userBio?.info?.mobileNumber}
                 pattern="^\+?[1-9]\d{1,14}$"
                 placeholder="+8801xxxxxxxxx"
                 className="border w-full px-3 py-2 bg-blue-100"
@@ -221,6 +311,7 @@ const BioDataEdit = () => {
                 />
               </div>
             </div>
+           
 
             {/* fathername */}
             <div className="w-full">
@@ -228,6 +319,7 @@ const BioDataEdit = () => {
               <input
                 type="text"
                 name="fathername"
+                defaultValue={userBio?.info?.fathername}
                 placeholder="Enter Father Name"
                 required
                 className=" w-full px-3 py-2 bg-blue-100"
@@ -239,6 +331,7 @@ const BioDataEdit = () => {
               <input
                 type="text"
                 name="mothername"
+                defaultValue={userBio?.info?.mothername}
                 placeholder="Enter Mother Name"
                 required
                 className=" w-full px-3 py-2 bg-blue-100"
@@ -251,6 +344,7 @@ const BioDataEdit = () => {
               </label>
               <select
                 name="expectedHeight"
+                defaultValue={userBio?.expectedHeight}
                 required
                 className=" bg-blue-100 w-full px-3 py-2"
               >
@@ -269,6 +363,7 @@ const BioDataEdit = () => {
               </label>
               <select
                 name="expectedWeight"
+                defaultValue={userBio?.expectedWeight}
                 required
                 className=" w-full bg-blue-100 px-3 py-2"
               >
@@ -290,7 +385,7 @@ const BioDataEdit = () => {
                 name="partnerage"
                 min={1}
                 max={99}
-                value={partenerAge}
+                defaultValue={userBio?.partenerAge}
                 onChange={(e) => {
                   const value = e.target.value;
                   if (value.length <= 2) {
@@ -310,6 +405,7 @@ const BioDataEdit = () => {
           <input
             type="email"
             name="email"
+            value={user?.email}
             readOnly
             required
             className=" w-full px-3 py-2 hover:cursor-not-allowed bg-blue-100"
@@ -325,6 +421,7 @@ const BioDataEdit = () => {
                 className="w-full hidden"
                 accept="image/*"
                 name="photo"
+                onChange={(e) => setImgPath(e.target.files[0])}
               />
               <div className="border-2 border-dashed w-full cursor-pointer  p-4 ">
                 <p className="text-center py-3 bg-blue-800 text-white font-semibold">
@@ -335,7 +432,9 @@ const BioDataEdit = () => {
           </div>
           {/* preview */}
           <div className="lg:w-1/2 py-3 mt-1">
-            <div className="w-full border h-full"></div>
+            <div className="w-full flex justify-center items-center border h-full">
+            <img src={imgPreview?imgPreview:userBio?.image} alt="" className="max-w-[100px] max-h-[80px]" />
+            </div>
           </div>
         </div>
         <div className="flex justify-center">
