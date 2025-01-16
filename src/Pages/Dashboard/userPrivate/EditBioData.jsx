@@ -5,7 +5,7 @@ import BioDataEdit from "../../../Components/dashboardComponents/BioDataEdit";
 import useUserData from "../../../hooks/data/useUserData";
 
 const EditBioData = () => {
-    const [userData, isLoading, refetch] = useUserData()
+    const [userData, isLoading, userRefetch] = useUserData()
     
 
       if(isLoading){
@@ -18,7 +18,7 @@ const EditBioData = () => {
         <div className="p-6">
 
           {userData?.status==="unregistered"?
-          <AddBioData refetch={refetch}></AddBioData>:
+          <AddBioData userRefetch={userRefetch}></AddBioData>:
           <BioDataEdit></BioDataEdit>
           } 
         </div>

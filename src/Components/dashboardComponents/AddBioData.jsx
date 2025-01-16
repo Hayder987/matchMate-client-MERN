@@ -44,7 +44,7 @@ const divisions = [
   "Sylhet",
 ];
 
-const AddBioData = ({ refetch }) => {
+const AddBioData = ({ userRefetch }) => {
   const [age, setAge] = useState("");
   const [partenerAge, setPartnerAge] = useState("");
   const [startDate, setStartDate] = useState(new Date());
@@ -112,7 +112,7 @@ const AddBioData = ({ refetch }) => {
     try {
       const image = await imgUpload(imgPath);
       await axiosSecure.post(`/bioData`, { ...bioData, image });
-      refetch();
+      userRefetch();
       form.reset();
       setPartnerAge("");
       setAge("");

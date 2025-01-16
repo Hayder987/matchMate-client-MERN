@@ -64,7 +64,8 @@ const AuthProvider = ({ children }) => {
           email: currentUser?.email,
           photo : currentUser?.photoURL,
           status: "unregistered",
-          role: "client"
+          role: "client",
+          type:"normal"
         }
 
         await serverUrl.post(`/userLogin`, user)
