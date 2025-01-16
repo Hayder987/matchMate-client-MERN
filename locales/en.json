@@ -27,6 +27,7 @@
   "uploadImg" : "Upload Image",
   "registerSwal" : "User Registration Successfully!",
   "loginSwal" : "User Login Successfully!",
-  "uploadImgSwal": "Please Upload Image!"
+  "uploadImgSwal": "Please Upload Image!",
+  "footerText": " MatchMate is a MERN-based matrimony platform connecting individuals through advanced matchmaking and secure, user-friendly features."
   
 }

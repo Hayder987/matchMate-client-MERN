@@ -36,7 +36,8 @@ const occupations = [
 const raceData = ["Fair", "Wheatish", "Dusky", "Dark", "Other"];
 const divisions = [
   "Dhaka",
-  "Chattagra",
+  "Rajshahi",
+  "Chattagram",
   "Rangpur",
   "Barisal",
   "Khulna",
