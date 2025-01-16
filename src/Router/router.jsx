@@ -17,6 +17,7 @@ import ApprovedConatct from "../Pages/Dashboard/adminPrivate/ApprovedConatct";
 import BioDatas from "../Pages/biodatas/BioDatas";
 import AboutPage from "../Pages/About/AboutPage";
 import ContactPage from "../Pages/contactPage/ContactPage";
+import AdminPrivate from "../private/AdminPrivate";
  
 
 
@@ -42,11 +43,11 @@ export const router = createBrowserRouter([
                    {path:"contactreq", element:<PrivateRoute><ContactRequest></ContactRequest></PrivateRoute>},
                    {path:'favorite', element:<PrivateRoute><FavoriteBio></FavoriteBio></PrivateRoute>}, 
                    //    admin Route
-                //    {index: true, element:<AdminDashBoard></AdminDashBoard>},
-                   {path:'adminDashBoard', element:<AdminDashBoard></AdminDashBoard>},
-                   {path:'manageUser', element:<ManageUser></ManageUser>},
-                   {path:'approvedPrimeum', element:<ApprovedPrimum></ApprovedPrimum>},
-                   {path:'approvedContact', element:<ApprovedConatct></ApprovedConatct>},
+                //    {index: true, element:<AdminPrivate></AdminPrivate>},
+                   {path:'adminDashBoard', element:<AdminPrivate><AdminDashBoard></AdminDashBoard></AdminPrivate>},
+                   {path:'manageUser', element:<AdminPrivate><ManageUser></ManageUser></AdminPrivate>},
+                   {path:'approvedPrimeum', element:<AdminPrivate><ApprovedPrimum></ApprovedPrimum></AdminPrivate>},
+                   {path:'approvedContact', element:<AdminPrivate><ApprovedConatct></ApprovedConatct></AdminPrivate>},
                    
                 ]
             },
