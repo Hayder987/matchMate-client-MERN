@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const serverUrl = useAxiosPublic()
 
+
   const registerUser = async (email, password) => {
     setLoading(true);
     return await createUserWithEmailAndPassword(auth, email, password);
@@ -44,7 +45,19 @@ const AuthProvider = ({ children }) => {
 //   get current User
   useEffect(()=>{
     const unSubscribe = onAuthStateChanged(auth, async(currentUser)=>{
-        setUser(currentUser)
+      setUser(currentUser)
+      // create token and send server
+      if(currentUser){
+        const jwtUser = {
+          email: currentUser?.email
+        }
+       await serverUrl.post('/jwt',jwtUser, {withCredentials:true})
+      }
+      else{
+        await serverUrl.post('/logout',{}, {withCredentials:true})
+        setLoading(false)
+      }
+      // save user data in DB
       if(currentUser){
         const user ={
           name : currentUser?.displayName,

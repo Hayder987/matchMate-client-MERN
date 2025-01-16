@@ -33,9 +33,9 @@ const Footer = () => {
             <Link to="/">
               <li className="">{t("menu1")}</li>
             </Link>
-            <li className="">{t("menu2")}</li>
-            <li className="">{t("menu3")}</li>
-            <li className="">{t("menu4")}</li>
+            <Link to={'/bioData'}><li className="">{t("menu2")}</li></Link>
+            <Link to={'/about'}><li className="">{t("menu3")}</li></Link>
+            <Link to="/contact"><li className="">{t("menu4")}</li></Link>
           </ul>
         </div>
         <div className=" flex flex-col lg:flex-row ">

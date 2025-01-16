@@ -14,6 +14,9 @@ import AdminDashBoard from "../Pages/Dashboard/adminPrivate/AdminDashBoard";
 import ManageUser from "../Pages/Dashboard/adminPrivate/ManageUser";
 import ApprovedPrimum from "../Pages/Dashboard/adminPrivate/ApprovedPrimum";
 import ApprovedConatct from "../Pages/Dashboard/adminPrivate/ApprovedConatct";
+import BioDatas from "../Pages/biodatas/BioDatas";
+import AboutPage from "../Pages/About/AboutPage";
+import ContactPage from "../Pages/contactPage/ContactPage";
  
 
 
@@ -27,6 +30,9 @@ export const router = createBrowserRouter([
             {path:"/", element:<Home></Home>},
             {path:"/login", element:<Login></Login>},
             {path:"/register", element:<Register></Register>},
+            {path:"/bioData", element:<BioDatas></BioDatas>},
+            {path:"/about", element:<AboutPage></AboutPage>},
+            {path:"/contact", element:<ContactPage></ContactPage>},
             {path:"dashboard", 
                 element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children:[

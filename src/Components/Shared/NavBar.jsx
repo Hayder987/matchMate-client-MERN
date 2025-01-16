@@ -50,19 +50,19 @@ const NavBar = () => {
                 {t("menu1")}
               </li>
             </NavLink>
-            <li className="flex items-center justify-center gap-1">
+            <NavLink to={'/bioData'}><li className="flex items-center justify-center gap-1">
               {" "}
               <FaPerson />
               {t("menu2")}
-            </li>
-            <li className="flex items-center justify-center gap-1">
+            </li></NavLink>
+            <NavLink to={'/about'}><li className="flex items-center justify-center gap-1">
               <BsInfoCircleFill />
               {t("menu3")}
-            </li>
-            <li className="flex items-center justify-center gap-1">
+            </li></NavLink>
+            <NavLink to={'/contact'}><li className="flex items-center justify-center gap-1">
               <IoMdContact />
               {t("menu4")}
-            </li>
+            </li></NavLink>
             {user && (
               <NavLink to="dashboard">
                 <li className="flex items-center justify-center gap-1">
