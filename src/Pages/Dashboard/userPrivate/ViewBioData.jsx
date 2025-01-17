@@ -162,7 +162,7 @@ const ViewBioData = () => {
         <div className="lg:w-1/12">
           <div className="flex justify-center items-center">
            {
-            userData?.type==="admin"?<button className="bg-white p-2 text-5xl text-pink-600 rounded-full"><MdWorkspacePremium /></button>:
+            userData?.type==="premium"?<button className="bg-white p-2 text-5xl text-pink-600 rounded-full"><MdWorkspacePremium /></button>:
             <button className="bg-white p-2 text-5xl text-pink-600 rounded-full">
               <TbBadge />
             </button>
