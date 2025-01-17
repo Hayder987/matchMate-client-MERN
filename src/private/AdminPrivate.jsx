@@ -7,7 +7,7 @@ const AdminPrivate = ({children}) => {
     const {user, loading} = useAuth()
     const [userData, isLoading] = useUserData()
 
-    if(loading){
+    if(loading || isLoading){
         return <LoaderSpinner></LoaderSpinner>
     }
 

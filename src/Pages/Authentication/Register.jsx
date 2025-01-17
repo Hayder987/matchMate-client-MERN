@@ -15,7 +15,7 @@ const Register = () => {
   const [imgPath, setImgPath] = useState('')
   const [imgPreview, setImgPreview] = useState('');
   const [errMessage, setErrMessage] = useState('')
-  const {registerUser, updateUser, loading, googleLogin} = useAuth()
+  const {registerUser, updateUser, loading, googleLogin, setLoading} = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -67,6 +67,7 @@ const Register = () => {
         icon: "error",
         title: err.message || "An error occurred",
     });
+    setLoading(false)
    }
    
   }
@@ -88,6 +89,7 @@ const Register = () => {
           icon: "error",
           title: err.message || "An error occurred",
       });
+      setLoading(false)
      }
     
   }

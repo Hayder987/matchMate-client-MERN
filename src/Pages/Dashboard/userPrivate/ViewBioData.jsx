@@ -29,7 +29,7 @@ const ViewBioData = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axiosSecure.patch(`/userPending/${user?.email}`);
+          await axiosSecure.patch(`/userPending/${user?.email}`, {bioId:userBio?.bioId, reqName:userBio?.info?.name});
           userRefetch()
           Swal.fire({
             title: "Send!",

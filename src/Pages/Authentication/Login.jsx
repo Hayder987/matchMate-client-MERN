@@ -9,7 +9,7 @@ import useAuth from "../../Context/useAuth";
 
 const Login = () => {
   const { t } = useTranslation();
-  const { loginUser, googleLogin } = useAuth();
+  const { loginUser, googleLogin, setLoading } = useAuth();
   const navigate = useNavigate()
   const {state} = useLocation()
   const goto = state || "/"
@@ -36,7 +36,7 @@ const Login = () => {
         icon: "error",
         title: err.message || "An error occurred",
       });
-      
+      setLoading(false)
     }
   };
 
@@ -57,6 +57,7 @@ const Login = () => {
             icon: "error",
             title: err.message || "An error occurred",
         });
+        setLoading(false)
         
        }
       

@@ -441,7 +441,7 @@ const BioDataEdit = () => {
         <div className="flex justify-center">
           <input
             type="submit"
-            value="Save And Publish Now "
+            value="Edit And Publish Now "
             className="p-3 bg-blue-800 font-semibold cursor-pointer mt-3 text-white w-full rounded-none"
           />
         </div>
