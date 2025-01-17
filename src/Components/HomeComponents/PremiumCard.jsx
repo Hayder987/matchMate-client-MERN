@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/axios/useAxiosPublic";
 import Card from "../commonComponents/Card";
+import LoaderSpinner from "../commonComponents/LoaderSpinner";
 
 const PremiumCard = () => {
     const { t } = useTranslation();
     const [ageValue, setAgeValue] = useState("-1")
     const serverUrl = useAxiosPublic()
 
-    const {data:premiumUser=[], } = useQuery({
+    const {data:premiumUser=[],isLoading:premiumUserLoading } = useQuery({
         queryKey:['premiumUser',ageValue],
         queryFn: async()=>{
         const {data}= await serverUrl.get(`/premiumUser?age=${parseInt(ageValue)}`)
@@ -37,11 +38,14 @@ const PremiumCard = () => {
                     </select>
                 </div>
             </div>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {
+             premiumUserLoading?<LoaderSpinner></LoaderSpinner>:
+             <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
                 {
                     premiumUser.map(item => <Card item={item} key={item?._id}></Card>)
                 }
             </div>
+            }
         </div>
     );
 };

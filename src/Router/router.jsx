@@ -18,6 +18,7 @@ import BioDatas from "../Pages/biodatas/BioDatas";
 import AboutPage from "../Pages/About/AboutPage";
 import ContactPage from "../Pages/contactPage/ContactPage";
 import AdminPrivate from "../private/AdminPrivate";
+import DetailsPage from "../Pages/Details/DetailsPage";
  
 
 
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
             {path:"/bioData", element:<BioDatas></BioDatas>},
             {path:"/about", element:<AboutPage></AboutPage>},
             {path:"/contact", element:<ContactPage></ContactPage>},
+            {path:"/details/:id", element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>},
             {path:"dashboard", 
                 element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children:[

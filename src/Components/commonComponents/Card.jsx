@@ -3,12 +3,13 @@ import { FaIdBadge } from "react-icons/fa";
 import { FaLocationDot, FaRegCalendarDays } from "react-icons/fa6";
 import { MdSensorOccupied, MdWorkspacePremium } from "react-icons/md";
 import { PiGenderIntersexBold } from "react-icons/pi";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const Card = ({ item }) => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  console.log(pathname);
+  const navigate = useNavigate()
+
   return (
     <div>
       <div className="flex group cursor-pointer gap-6 p-2 shadow-md bg-white rounded-md">
@@ -21,7 +22,7 @@ const Card = ({ item }) => {
           />
         </div>
         {/* text */}
-        <div className="py-4">
+        <div className="py-4 w-5/12 px-1 lg:px-4">
           <div className="flex mb-4 items-center justify-between text-3xl">
             <p className="flex  text-xl  items-center gap-2">
               <span className="">
@@ -54,7 +55,9 @@ const Card = ({ item }) => {
             <span className="">{item?.info?.permanentDivision}</span>
           </p>
           <div className="mt-6">
-            <button className="btn text-sm py-2 px-4">{t("viewBtn")}</button>
+            <button
+            onClick={()=>navigate(`/details/${item?.profileBioId}`)}
+             className="btn text-sm py-2 px-4">{t("viewBtn")}</button>
           </div>
         </div>
       </div>
