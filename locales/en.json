@@ -28,6 +28,9 @@
   "registerSwal" : "User Registration Successfully!",
   "loginSwal" : "User Login Successfully!",
   "uploadImgSwal": "Please Upload Image!",
-  "footerText": " MatchMate is a MERN-based matrimony platform connecting individuals through advanced matchmaking and secure, user-friendly features."
+  "footerText": " MatchMate is a MERN-based matrimony platform connecting individuals through advanced matchmaking and secure, user-friendly features.",
+  "premiumTitle" : "Exclusive Premium Profiles",
+  "premiumDesc" : "Explore exclusive premium profiles of members seeking meaningful connections, curated for those ready to find their perfect match.",
+  "viewBtn": "View Profile"
   
 }
