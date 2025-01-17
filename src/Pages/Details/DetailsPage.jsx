@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
 import LoaderSpinner from "../../Components/commonComponents/LoaderSpinner";
 import { format } from "date-fns";
 import useUserData from "../../hooks/data/useUserData";
 import { FaRegHeart } from "react-icons/fa";
+import useAxiosPublic from "../../hooks/axios/useAxiosPublic";
+import SimilarBioCard from "../../Components/commonComponents/SimilarBioCard";
 
 const DetailsPage = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
+  const serverUrl = useAxiosPublic();
   const [userData] = useUserData();
-
-  // if(isLoading ){
-  //     return <LoaderSpinner></LoaderSpinner>
-  // }
+  const navigate = useNavigate();
 
   const { data: userBio = [], isLoading: userBioLoading } = useQuery({
     queryKey: ["singleUserData", id],
@@ -22,6 +22,18 @@ const DetailsPage = () => {
       return data;
     },
   });
+
+  const { data: similarBio, isLoading: similarBioLoading } = useQuery({
+    queryKey: ["similarBio", userBio?.biodataType],
+    queryFn: async () => {
+      const { data } = await serverUrl.get(
+        `/sameBio?type=${userBio?.biodataType}`
+      );
+      return data;
+    },
+  });
+
+  console.log(similarBio);
 
   return (
     <div className="py-10 md:py-16">
@@ -138,18 +150,43 @@ const DetailsPage = () => {
                 <div className="">
                   <div className="flex items-center justify-between px-4">
                     {userData.type === "premium" ? (
-                      <div className="">
-                      </div>
+                      <div className=""></div>
                     ) : (
                       <button className="btn py-2 px-3">
                         Request Contact Information
                       </button>
                     )}
-                    <button className="text-3xl bg-blue-100 p-3 rounded-full"><FaRegHeart /></button>
+                    <button className="text-3xl bg-blue-100 p-3 rounded-full">
+                      <FaRegHeart />
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        )}
+      </div>
+
+      {/* similar bio */}
+      <div className="">
+        <p className="text-center mt-20 mb-2 text-xl font-semibold text-gray-700">
+          See some similar biodata{" "}
+        </p>
+        {/* divider */}
+        <div className="border-b-2 mb-12"></div>
+        {similarBioLoading ? (
+          <LoaderSpinner></LoaderSpinner>
+        ) : (
+          <div className="container mx-auto gap-12 lg:gap-20 px-4 md:px-6 lg:px-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {similarBio.map((item) => (
+              <div
+                onClick={() => navigate(`/details/${item?._id}`)}
+                key={item?._id}
+                className=""
+              >
+                <SimilarBioCard item={item}></SimilarBioCard>
+              </div>
+            ))}
           </div>
         )}
       </div>
