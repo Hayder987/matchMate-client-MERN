@@ -7,6 +7,8 @@ import useUserData from "../../hooks/data/useUserData";
 import { FaRegHeart } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/axios/useAxiosPublic";
 import SimilarBioCard from "../../Components/commonComponents/SimilarBioCard";
+import useAuth from "../../Context/useAuth";
+import Swal from "sweetalert2";
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -14,6 +16,7 @@ const DetailsPage = () => {
   const serverUrl = useAxiosPublic();
   const [userData] = useUserData();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const { data: userBio = [], isLoading: userBioLoading } = useQuery({
     queryKey: ["singleUserData", id],
@@ -33,7 +36,35 @@ const DetailsPage = () => {
     },
   });
 
-  console.log(similarBio);
+  const addFavoriteHandler = async (id) => {
+    const favoriteData = {
+      email: user?.email,
+      serverId: id,
+    };
+    try {
+      const { data } = await axiosSecure.post(`/myFavorite`, favoriteData)
+      if(data.status){
+        Swal.fire({
+          title: 'Already Added To Favorite',
+          icon: "info",
+        });
+        return
+      }
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${userBio.info.name} Added To Favorite!`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+    } catch (err) {
+      Swal.fire({
+        title: err.code,
+        text: err.message,
+        icon: "error",
+      });
+    }
+  };
 
   return (
     <div className="py-10 md:py-16">
@@ -153,12 +184,16 @@ const DetailsPage = () => {
                       <div className=""></div>
                     ) : (
                       <button
-                      onClick={()=> navigate(`/checkout/${userBio?.bioId}`)}
-                       className="btn py-2 px-3">
+                        onClick={() => navigate(`/checkout/${userBio?.bioId}`)}
+                        className="btn py-2 px-3"
+                      >
                         Request Contact Information
                       </button>
                     )}
-                    <button className="text-3xl hover:bg-blue-800 hover:text-pink-500 duration-300 bg-blue-100 p-3 rounded-full">
+                    <button
+                      onClick={() => addFavoriteHandler(userBio?._id)}
+                      className="text-3xl hover:bg-blue-800 hover:text-pink-500 duration-300 bg-blue-100 p-3 rounded-full"
+                    >
                       <FaRegHeart />
                     </button>
                   </div>
