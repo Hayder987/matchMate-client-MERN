@@ -20,6 +20,7 @@ import ContactPage from "../Pages/contactPage/ContactPage";
 import AdminPrivate from "../private/AdminPrivate";
 import DetailsPage from "../Pages/Details/DetailsPage";
 import CheackOutPage from "../Pages/cheackoutPage/CheackOutPage";
+import Welcome from "../Components/commonComponents/Welcome";
  
 
 
@@ -41,13 +42,12 @@ export const router = createBrowserRouter([
             {path:"dashboard", 
                 element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children:[
-                //    { index: true, element: <PrivateRoute><ViewBioData /></PrivateRoute> },
+                   { index: true, element: <PrivateRoute><Welcome></Welcome></PrivateRoute> },
                    {path:'editBio', element:<PrivateRoute><EditBioData></EditBioData></PrivateRoute>},
                    {path:'viewBio', element:<PrivateRoute><ViewBioData></ViewBioData></PrivateRoute>},
                    {path:"contactreq", element:<PrivateRoute><ContactRequest></ContactRequest></PrivateRoute>},
                    {path:'favorite', element:<PrivateRoute><FavoriteBio></FavoriteBio></PrivateRoute>}, 
                    //    admin Route
-                //    {index: true, element:<AdminPrivate></AdminPrivate>},
                    {path:'adminDashBoard', element:<AdminPrivate><AdminDashBoard></AdminDashBoard></AdminPrivate>},
                    {path:'manageUser', element:<AdminPrivate><ManageUser></ManageUser></AdminPrivate>},
                    {path:'approvedPrimeum', element:<AdminPrivate><ApprovedPrimum></ApprovedPrimum></AdminPrivate>},
