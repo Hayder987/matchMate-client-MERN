@@ -68,6 +68,7 @@ const CheckoutForm = ({ userContactBioData }) => {
           bioId: userContactBioData?.bioId,
           ApplicantEmail: user?.email,
           userEmail: userContactBioData?.email,
+          amount: 5,
           userPhone: userContactBioData?.info.mobileNumber
         };
         try {

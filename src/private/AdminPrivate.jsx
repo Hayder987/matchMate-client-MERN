@@ -1,4 +1,4 @@
-import { Navigate } from "react-router";
+import { Navigate} from "react-router";
 import LoaderSpinner from "../Components/commonComponents/LoaderSpinner";
 import useAuth from "../Context/useAuth";
 import useUserData from "../hooks/data/useUserData";
@@ -15,7 +15,7 @@ const AdminPrivate = ({children}) => {
        return children
     }
 
-    return <Navigate to={'/login'}></Navigate>
+    return <Navigate  to={'/login'}></Navigate>
 };
 
 export default AdminPrivate;
