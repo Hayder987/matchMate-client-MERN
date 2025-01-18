@@ -58,6 +58,7 @@ const AuthProvider = ({ children }) => {
         setLoading(false)
       }
       // save user data in DB
+     setTimeout( async()=>{
       if(currentUser){
         const user ={
           name : currentUser?.displayName,
@@ -71,7 +72,8 @@ const AuthProvider = ({ children }) => {
         await serverUrl.post(`/userLogin`, user)
       }
         setLoading(false)
-    })
+    }, 1000)
+     })
 
     return ()=>{
         unSubscribe()
@@ -96,7 +98,6 @@ const AuthProvider = ({ children }) => {
 
   };
 
-  console.log(user)
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
