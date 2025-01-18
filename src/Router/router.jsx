@@ -19,6 +19,7 @@ import AboutPage from "../Pages/About/AboutPage";
 import ContactPage from "../Pages/contactPage/ContactPage";
 import AdminPrivate from "../private/AdminPrivate";
 import DetailsPage from "../Pages/Details/DetailsPage";
+import CheackOutPage from "../Pages/cheackoutPage/CheackOutPage";
  
 
 
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
             {path:"/about", element:<AboutPage></AboutPage>},
             {path:"/contact", element:<ContactPage></ContactPage>},
             {path:"/details/:id", element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>},
+            {path:"/checkout/:biodataId", element:<PrivateRoute><CheackOutPage></CheackOutPage></PrivateRoute>},
             {path:"dashboard", 
                 element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children:[

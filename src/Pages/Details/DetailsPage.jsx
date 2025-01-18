@@ -152,11 +152,13 @@ const DetailsPage = () => {
                     {userData.type === "premium" ? (
                       <div className=""></div>
                     ) : (
-                      <button className="btn py-2 px-3">
+                      <button
+                      onClick={()=> navigate(`/checkout/${userBio?.bioId}`)}
+                       className="btn py-2 px-3">
                         Request Contact Information
                       </button>
                     )}
-                    <button className="text-3xl bg-blue-100 p-3 rounded-full">
+                    <button className="text-3xl hover:bg-blue-800 hover:text-pink-500 duration-300 bg-blue-100 p-3 rounded-full">
                       <FaRegHeart />
                     </button>
                   </div>
@@ -182,7 +184,7 @@ const DetailsPage = () => {
               <div
                 onClick={() => navigate(`/details/${item?._id}`)}
                 key={item?._id}
-                className=""
+                className="cursor-pointer "
               >
                 <SimilarBioCard item={item}></SimilarBioCard>
               </div>
