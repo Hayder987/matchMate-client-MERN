@@ -102,7 +102,7 @@ const BioDataEdit = () => {
           height,
           weight,
           race,
-          age,
+          age:parseInt(age),
           birthDate: startDate,
           presentDivision,
           permanentDivision,

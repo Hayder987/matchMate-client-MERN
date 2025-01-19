@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { FaIdBadge } from "react-icons/fa";
 import { FaLocationDot, FaRegCalendarDays } from "react-icons/fa6";
-import { MdSensorOccupied, MdWorkspacePremium } from "react-icons/md";
+import {  MdWorkspacePremium } from "react-icons/md";
 import { PiGenderIntersexBold } from "react-icons/pi";
 import { useLocation, useNavigate } from "react-router";
 
