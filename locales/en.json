@@ -31,6 +31,19 @@
   "footerText": " MatchMate is a MERN-based matrimony platform connecting individuals through advanced matchmaking and secure, user-friendly features.",
   "premiumTitle" : "Exclusive Premium Profiles",
   "premiumDesc" : "Explore exclusive premium profiles of members seeking meaningful connections, curated for those ready to find their perfect match.",
-  "viewBtn": "View Profile"
+  "viewBtn": "View Profile",
+  "howitworkTitle" : "How MatchMate Works",
+  "howItWorkDesc": "Finding your perfect match has never been easier! Follow these simple steps to begin your journey toward a meaningful relationship",
+  "workT1":"Create Your Profile",
+  "workD1" :"Register on MatchMate and create a detailed profile. Share your preferences, background, and aspirations to help us find the most compatible matches for you. Add a profile picture to make a great first impression.",
+  "workT2":"Discover Your Matches",
+  "workD2" :"Our advanced matchmaking algorithm and search filters help you explore profiles based on your criteria like age, profession, location, and more. Let us suggest matches that align with your interests and values.",
+  "workT3":"Connect and Communicate",
+  "workD3" :"Express interest in profiles you admire and chat securely with your matches. Use our premium features to send messages, view contact details, and build meaningful connections in a safe environment.",
+  "workT4":"Finalize Your Match",
+  "workD4" :"Once you’ve found the right person, take the next step toward a committed relationship. MatchMate supports you in making this life-changing decision with confidence.",
+  "successTitle": "MatchMate Success",
+  "successDesc" : "Discover how MatchMate has helped countless individuals find their perfect match, leading to meaningful relationships and successful marriages."
+
   
 }
