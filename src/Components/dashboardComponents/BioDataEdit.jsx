@@ -140,10 +140,10 @@ const BioDataEdit = () => {
       <h1 className="md:text-2xl font-medium text-center mb-8 text-gray-800 ">
         Edit Your BioData Here
       </h1>
-      <form onSubmit={editBioHandler} className="">
+      <form onSubmit={editBioHandler} className="w-full">
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
           {/* d-1 */}
-          <div className="lg:w-1/2 flex flex-col gap-4">
+          <div className="w-full lg:w-1/2 flex flex-col gap-4">
             {/*data type  */}
             <div className="w-full">
               <label className="block font-medium mb-2">Biodata Type</label>
@@ -272,7 +272,7 @@ const BioDataEdit = () => {
           </div>
 
           {/* d-2 */}
-          <div className="lg:w-1/2 flex flex-col gap-4">
+          <div className="w-full lg:w-1/2 flex flex-col gap-4">
             {/* ocupation */}
             <div className="">
               <label className="block font-medium mb-2">Occupation</label>
