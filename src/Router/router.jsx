@@ -22,6 +22,7 @@ import DetailsPage from "../Pages/Details/DetailsPage";
 import CheackOutPage from "../Pages/cheackoutPage/CheackOutPage";
 import Welcome from "../Components/commonComponents/Welcome";
 import GotMarried from "../Pages/Dashboard/userPrivate/GotMarried";
+import SuccessStoryAdmin from "../Pages/Dashboard/adminPrivate/SuccessStoryAdmin";
  
 
 
@@ -50,11 +51,12 @@ export const router = createBrowserRouter([
                    {path:"contactreq", element:<PrivateRoute><ContactRequest></ContactRequest></PrivateRoute>},
                    {path:'favorite', element:<PrivateRoute><FavoriteBio></FavoriteBio></PrivateRoute>},
                    {path:'gotMarried', element:<PrivateRoute><GotMarried></GotMarried></PrivateRoute>}, 
-                   //    admin Route
+                   //admin Route
                    {path:'adminDashBoard', element:<AdminPrivate><AdminDashBoard></AdminDashBoard></AdminPrivate>},
                    {path:'manageUser', element:<AdminPrivate><ManageUser></ManageUser></AdminPrivate>},
                    {path:'approvedPrimeum', element:<AdminPrivate><ApprovedPrimum></ApprovedPrimum></AdminPrivate>},
                    {path:'approvedContact', element:<AdminPrivate><ApprovedConatct></ApprovedConatct></AdminPrivate>},
+                   {path:'successStory', element:<AdminPrivate><SuccessStoryAdmin></SuccessStoryAdmin></AdminPrivate>},
                    
                 ]
             },

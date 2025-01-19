@@ -9,7 +9,7 @@ import { LuLogOut } from "react-icons/lu";
 import Swal from "sweetalert2";
 import { NavLink, Outlet, useNavigate } from "react-router";
 import useUserData from "../../hooks/data/useUserData";
-import { GiLovers } from "react-icons/gi";
+import { GiLoveMystery, GiLovers } from "react-icons/gi";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
@@ -74,6 +74,11 @@ const Dashboard = () => {
                     <NavLink to="approvedContact">
                       <li className="flex items-center gap-2">
                       <RiContactsBook3Fill /> Approved Contact Request
+                      </li>
+                    </NavLink>
+                    <NavLink to="successStory">
+                      <li className="flex items-center gap-2">
+                      <GiLoveMystery /> Success Story
                       </li>
                     </NavLink>
                   </ul>
