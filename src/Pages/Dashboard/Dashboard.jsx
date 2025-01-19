@@ -9,6 +9,7 @@ import { LuLogOut } from "react-icons/lu";
 import Swal from "sweetalert2";
 import { NavLink, Outlet, useNavigate } from "react-router";
 import useUserData from "../../hooks/data/useUserData";
+import { GiLovers } from "react-icons/gi";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
@@ -100,6 +101,11 @@ const Dashboard = () => {
                     <NavLink to="favorite">
                       <li className="flex items-center gap-2">
                         <MdOutlineFavorite /> Favorites Biodata
+                      </li>
+                    </NavLink>
+                    <NavLink to="gotMarried">
+                      <li className="flex items-center gap-2">
+                      <GiLovers /> Got Married
                       </li>
                     </NavLink>
                   </ul>

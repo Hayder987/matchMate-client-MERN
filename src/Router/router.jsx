@@ -21,6 +21,7 @@ import AdminPrivate from "../private/AdminPrivate";
 import DetailsPage from "../Pages/Details/DetailsPage";
 import CheackOutPage from "../Pages/cheackoutPage/CheackOutPage";
 import Welcome from "../Components/commonComponents/Welcome";
+import GotMarried from "../Pages/Dashboard/userPrivate/GotMarried";
  
 
 
@@ -43,10 +44,12 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children:[
                    { index: true, element: <PrivateRoute><Welcome></Welcome></PrivateRoute> },
+                   //user Route
                    {path:'editBio', element:<PrivateRoute><EditBioData></EditBioData></PrivateRoute>},
                    {path:'viewBio', element:<PrivateRoute><ViewBioData></ViewBioData></PrivateRoute>},
                    {path:"contactreq", element:<PrivateRoute><ContactRequest></ContactRequest></PrivateRoute>},
-                   {path:'favorite', element:<PrivateRoute><FavoriteBio></FavoriteBio></PrivateRoute>}, 
+                   {path:'favorite', element:<PrivateRoute><FavoriteBio></FavoriteBio></PrivateRoute>},
+                   {path:'gotMarried', element:<PrivateRoute><GotMarried></GotMarried></PrivateRoute>}, 
                    //    admin Route
                    {path:'adminDashBoard', element:<AdminPrivate><AdminDashBoard></AdminDashBoard></AdminPrivate>},
                    {path:'manageUser', element:<AdminPrivate><ManageUser></ManageUser></AdminPrivate>},
