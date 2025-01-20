@@ -52,6 +52,7 @@ const AddBioData = ({ userRefetch }) => {
   const [imgPath, setImgPath] = useState("");
   const [imgPreview, setImgPreview] = useState("");
   const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (imgPath) {
@@ -110,9 +111,11 @@ const AddBioData = ({ userRefetch }) => {
     }
 
     try {
+      setLoading(true)
       const image = await imgUpload(imgPath);
       await axiosSecure.post(`/bioData`, { ...bioData, image });
       userRefetch();
+      setLoading(false)
       form.reset();
       setPartnerAge("");
       setAge("");
@@ -449,8 +452,8 @@ const AddBioData = ({ userRefetch }) => {
         <div className="flex justify-center">
           <input
             type="submit"
-            value="Save And Publish Now "
-            className="p-3 bg-blue-800 font-semibold cursor-pointer mt-3 text-white w-full rounded-none"
+            value={`${loading?'Updating...':"Save And Publish Now"}`}
+            className={`p-3 ${loading&&'hover:cursor-not-allowed'} bg-blue-800 font-semibold cursor-pointer mt-3 text-white w-full rounded-none`}
           />
         </div>
       </form>
