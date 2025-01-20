@@ -79,7 +79,7 @@ const AddBioData = ({ userRefetch }) => {
     const expectedHeight = form.expectedHeight.value;
     const expectedWeight = form.expectedWeight.value;
     const email = form.email.value;
-
+  
     const bioData = {
       biodataType,
       info: {
@@ -110,12 +110,13 @@ const AddBioData = ({ userRefetch }) => {
       return;
     }
 
+    setLoading(true)
+
     try {
-      setLoading(true)
       const image = await imgUpload(imgPath);
-      await axiosSecure.post(`/bioData`, { ...bioData, image });
-      userRefetch();
+      await axiosSecure.post(`/bioData`, { ...bioData, image })
       setLoading(false)
+      userRefetch();
       form.reset();
       setPartnerAge("");
       setAge("");
@@ -452,7 +453,7 @@ const AddBioData = ({ userRefetch }) => {
         <div className="flex justify-center">
           <input
             type="submit"
-            value={`${loading?'Updating...':"Save And Publish Now"}`}
+            value={loading?'uploading...':"Save And Publish Now"}
             className={`p-3 ${loading&&'hover:cursor-not-allowed'} bg-blue-800 font-semibold cursor-pointer mt-3 text-white w-full rounded-none`}
           />
         </div>

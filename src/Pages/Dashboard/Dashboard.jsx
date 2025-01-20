@@ -24,6 +24,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [userData, refetch] = useUserData();
   const [sideMenu, setSideMenu] = useState(false);
+  const {user} = useAuth()
 
   const logOutHandler = async () => {
     try {
@@ -128,6 +129,12 @@ const Dashboard = () => {
                 </div>
               )}
             </div>
+
+            <div className="flex items-center gap-2">
+              <img src={user?.photoURL} alt="" className="w-8 h-8 rounded-full" />
+              <h1 className="font-semibold text-xl text-gray-100">{user?.displayName}</h1>
+            </div>
+
             <div className="">
               <button
                 onClick={logOutHandler}
@@ -236,6 +243,10 @@ const Dashboard = () => {
                   </ul>
                 </div>
               )}
+            </div>
+            <div className="flex items-center gap-2">
+              <img src={user?.photoURL} alt="" className="w-8 h-8 rounded-full" />
+              <h1 className="font-semibold text-xl text-gray-100">{user?.displayName}</h1>
             </div>
             <div className="">
               <button

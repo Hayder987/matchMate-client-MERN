@@ -22,7 +22,7 @@ const divisions = [
 
 const BioDatas = () => {
   const [page, setPage] = useState(1);
-  const limit = 12;
+  const limit = 20;
   const serverUrl = useAxiosPublic();
   const [ageValue, setAgeValue] = useState(0);
   const [biodataType, setBiodataType] = useState("");
