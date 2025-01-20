@@ -9,6 +9,7 @@ import useAxiosPublic from "../../hooks/axios/useAxiosPublic";
 import SimilarBioCard from "../../Components/commonComponents/SimilarBioCard";
 import useAuth from "../../Context/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -68,6 +69,9 @@ const DetailsPage = () => {
 
   return (
     <div className="py-10 md:py-16">
+      <Helmet>
+        <title>Details || MatchMate</title>
+      </Helmet>
       <div className="container mx-auto bg-white p-4">
         {userBioLoading ? (
           <LoaderSpinner></LoaderSpinner>

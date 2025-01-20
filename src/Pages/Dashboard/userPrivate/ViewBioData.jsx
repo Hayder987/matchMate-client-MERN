@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/axios/useAxiosSecure";
 import useUserData from "../../../hooks/data/useUserData";
 import NoData from "../../../Components/commonComponents/NoData";
+import { Helmet } from "react-helmet-async";
 
 const ViewBioData = () => {
   const [userBio, bioLoading] = useUserBio();
@@ -54,6 +55,9 @@ const ViewBioData = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>View BioData || MatchMate</title>
+      </Helmet>
       <div className="px-4 md:px-6 lg:px-8 py-6 lg:py-16 bg-blue-50">
         {!userBio ? (
           <NoData></NoData>

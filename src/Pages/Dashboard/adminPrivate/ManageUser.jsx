@@ -6,6 +6,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { TbBadge } from "react-icons/tb";
 import { MdWorkspacePremium } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -77,6 +78,9 @@ const ManageUser = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Manageuser || MatchMate</title>
+      </Helmet>
       <div className="bg-blue-100 flex justify-between items-center flex-col md:flex-row text-xl p-3 mb-6">
         <p className="">All User: {allUserData.length}</p>
         <p className=""></p>

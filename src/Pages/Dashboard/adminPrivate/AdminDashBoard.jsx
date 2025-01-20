@@ -7,6 +7,7 @@ import bioImg from "../../../assets/logo/bio.png";
 import money from "../../../assets/logo/dollar.png";
 import premium from "../../../assets/logo/premium.png";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import { Helmet } from "react-helmet-async";
 
 const AdminDashBoard = () => {
   const axiosSecure = useAxiosSecure();
@@ -64,6 +65,9 @@ const AdminDashBoard = () => {
 
   return (
     <div className="p-2 md:p-6 lg:p-10">
+      <Helmet>
+        <title>DashBoard || MatchMate</title>
+      </Helmet>
       <h1 className="text-3xl font-semibold text-center mt-4 mb-8">
         Welcome Back!
       </h1>

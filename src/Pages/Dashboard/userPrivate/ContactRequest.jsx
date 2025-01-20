@@ -5,6 +5,7 @@ import LoaderSpinner from "../../../Components/commonComponents/LoaderSpinner";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import NoData from "../../../Components/commonComponents/NoData";
+import { Helmet } from "react-helmet-async";
 
 const ContactRequest = () => {
   const { user } = useAuth();
@@ -61,6 +62,9 @@ const ContactRequest = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Contact Req || MatchMate</title>
+      </Helmet>
       {myReqData.length === 0 ? (
         <div className="">
           <NoData></NoData>

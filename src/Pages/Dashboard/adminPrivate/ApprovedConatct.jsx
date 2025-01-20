@@ -5,6 +5,7 @@ import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import LoaderSpinner from "../../../Components/commonComponents/LoaderSpinner";
 import Swal from "sweetalert2";
 import { GiCheckMark } from "react-icons/gi";
+import { Helmet } from "react-helmet-async";
 
 const ApprovedConatct = () => {
   const axiosSecure = useAxiosSecure();
@@ -58,6 +59,9 @@ const ApprovedConatct = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Approved Contact || MatchMate</title>
+      </Helmet>
         <div className="bg-blue-100 flex justify-between items-center flex-col md:flex-row text-xl p-3 mb-6">
           <p className="">All Request: {allContactReq.length}</p>
           <p className="">Pending Request: {reqDocCount}</p>

@@ -4,6 +4,7 @@ import LoaderSpinner from "../../../Components/commonComponents/LoaderSpinner";
 import { MdWorkspacePremium } from "react-icons/md";
 import Swal from "sweetalert2";
 import NoData from "../../../Components/commonComponents/NoData";
+import { Helmet } from "react-helmet-async";
 
 const ApprovedPrimum = () => {
   const axiosSecure = useAxiosSecure();
@@ -54,6 +55,9 @@ const ApprovedPrimum = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Approved || MatchMate</title>
+      </Helmet>
       {userData.length === 0 ? (
         <div className="py-6">
             <NoData></NoData>

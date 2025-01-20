@@ -7,6 +7,7 @@ import SectionDivider from "../../Components/commonComponents/SectionDivider";
 import { IoFilterSharp } from "react-icons/io5";
 import NoData from "../../Components/commonComponents/NoData";
 import { TfiLayoutSidebarRight } from "react-icons/tfi";
+import { Helmet } from "react-helmet-async";
 
 const divisions = [
   "Dhaka",
@@ -51,6 +52,9 @@ const resetHandler = async()=>{
 
   return (
     <div>
+      <Helmet>
+        <title>BioData || MatchMate</title>
+      </Helmet>
       <div className="container relative flex py-6 mx-auto">
         {/* aside desktop*/}
         <div className="lg:w-2/12 hidden lg:flex lg:flex-col  py-6 px-4 min-h-[90vh] bg-slate-100">

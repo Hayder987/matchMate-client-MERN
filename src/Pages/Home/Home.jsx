@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import SectionDivider from "../../Components/commonComponents/SectionDivider";
 import Banner from "../../Components/HomeComponents/Banner";
 import HowItWork from "../../Components/HomeComponents/HowItWork";
@@ -9,6 +10,9 @@ import SuccessStory from "../../Components/HomeComponents/SuccessStory";
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Home || MatchMate</title>
+            </Helmet>
            <Banner></Banner>
            <SectionDivider></SectionDivider>
            <div className="container mx-auto">

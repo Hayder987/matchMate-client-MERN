@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
 import LoaderSpinner from "../../Components/commonComponents/LoaderSpinner";
 import useAuth from "../../Context/useAuth";
 import Stripe from "../../Stripe/Stripe";
+import { Helmet } from "react-helmet-async";
 
 const CheackOutPage = () => {
   const { biodataId } = useParams();
@@ -24,6 +25,9 @@ const CheackOutPage = () => {
 
   return (
     <div className="py-12">
+      <Helmet>
+        <title>Cheack || MatchMate</title>
+      </Helmet>
       <div className="">
         {contactBioDataLoading ? (
           <LoaderSpinner></LoaderSpinner>

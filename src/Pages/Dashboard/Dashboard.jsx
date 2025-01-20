@@ -17,6 +17,7 @@ import useUserData from "../../hooks/data/useUserData";
 import { GiLoveMystery, GiLovers } from "react-icons/gi";
 import { useState } from "react";
 import { TfiLayoutSidebarRight } from "react-icons/tfi";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
@@ -45,6 +46,9 @@ const Dashboard = () => {
 
   return (
     <PageMargin>
+      <Helmet>
+        <title>DashBoard || MatchMate</title>
+      </Helmet>
       <div className="flex container relative mx-auto min-h-[calc(100vh-145px)] ">
         {/* sidebar desktop */}
         <div className="lg:w-2/12 hidden lg:flex lg:flex-col bg-blue-800 py-6 px-3">

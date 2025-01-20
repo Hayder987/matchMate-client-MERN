@@ -3,6 +3,7 @@ import { Link, useRouteError } from "react-router";
 import errAnim from "../../lottieFiels/Error.json";
 import Lottie from "react-lottie";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -18,6 +19,9 @@ const ErrorPage = () => {
 
   return (
     <div className="py-24">
+      <Helmet>
+        <title>Error!</title>
+      </Helmet>
       <div className="container flex gap-8 flex-col-reverse lg:flex-row mx-auto bg-slate-100 p-4 py-10">
         {/* image */}
         <div className="lg:w-1/2 ">

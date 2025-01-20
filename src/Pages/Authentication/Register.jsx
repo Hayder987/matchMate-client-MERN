@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import imgUpload from "../../api/imgUpload";
 import useAuth from "../../Context/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -111,6 +112,9 @@ const Register = () => {
         alignItems: "center",
       }}
     >
+      <Helmet>
+        <title>Register || MatchMate</title>
+      </Helmet>
       <PageMargin>
         <div className="flex flex-col lg:flex-row gap-4 lg:max-w-[1000px] mx-auto rounded-lg justify-center bg-black bg-opacity-30 p-6 md:p-10 ">
           {/* img */}

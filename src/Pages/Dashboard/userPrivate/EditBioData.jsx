@@ -1,4 +1,5 @@
 
+import { Helmet } from "react-helmet-async";
 import LoaderSpinner from "../../../Components/commonComponents/LoaderSpinner";
 import AddBioData from "../../../Components/dashboardComponents/AddBioData";
 import BioDataEdit from "../../../Components/dashboardComponents/BioDataEdit";
@@ -16,6 +17,9 @@ const EditBioData = () => {
 
     return (
         <div className="p-6">
+          <Helmet>
+            <title>Edit Bio || MatchMate</title>
+          </Helmet>
 
           {userData?.status==="unregistered"?
           <AddBioData userRefetch={userRefetch}></AddBioData>:

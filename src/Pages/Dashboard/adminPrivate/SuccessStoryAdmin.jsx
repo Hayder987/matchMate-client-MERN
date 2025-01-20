@@ -5,6 +5,7 @@ import { useState } from "react";
 import LoaderSpinner from "../../../Components/commonComponents/LoaderSpinner";
 import useAxiosSecure from "../../../hooks/axios/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const SuccessStoryAdmin = () => {
   const { reviewData, reviewLoading, reviewFetch } = useReviewData();
@@ -61,6 +62,9 @@ const deleteHandler = (id)=>{
 
   return (
     <div>
+      <Helmet>
+        <title>Success Story || MatchMate</title>
+      </Helmet>
       <div className="px-6 py-10">
         <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
           <thead className="ltr:text-left rtl:text-right">

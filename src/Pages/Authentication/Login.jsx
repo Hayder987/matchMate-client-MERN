@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../Context/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -79,6 +80,9 @@ const Login = () => {
         alignItems: "center",
       }}
     >
+      <Helmet>
+        <title>Login || MatchMate</title>
+      </Helmet>
       <PageMargin>
         <div className="flex flex-col lg:flex-row gap-4 lg:max-w-[1000px] mx-auto rounded-lg justify-center bg-black bg-opacity-30 p-6 md:p-10 ">
           {/* img */}

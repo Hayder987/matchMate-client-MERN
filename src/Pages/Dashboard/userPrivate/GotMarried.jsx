@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import imgUpload from "../../../api/imgUpload";
 import useAxiosSecure from "../../../hooks/axios/useAxiosSecure";
 import DatePicker from "react-datepicker";
+import { Helmet } from "react-helmet-async";
 
 const GotMarried = () => {
   const [rating, setRating] = useState(0);
@@ -80,6 +81,9 @@ const GotMarried = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Got Married</title>
+      </Helmet>
       <div className=" p-4 md:p-8">
         <div className="lg:max-w-[800px] border mx-auto p-4 lg:p-6">
           <form onSubmit={reviewHandler} className="">

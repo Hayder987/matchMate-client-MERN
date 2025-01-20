@@ -5,6 +5,7 @@ import LoaderSpinner from "../../../Components/commonComponents/LoaderSpinner";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import NoData from "../../../Components/commonComponents/NoData";
+import { Helmet } from "react-helmet-async";
 
 const FavoriteBio = () => {
   const { user } = useAuth();
@@ -60,6 +61,9 @@ const FavoriteBio = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FavoriteBio || MatchMate</title>
+      </Helmet>
       {favoriteData.length === 0 ? (
         <div className="">
             <NoData></NoData>

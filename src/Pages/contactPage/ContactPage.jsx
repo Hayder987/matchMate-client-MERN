@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import contactBannner from "../../assets/images/contactUs.jpg";
+import { Helmet } from "react-helmet-async";
 
 const ContactPage = () => {
   const { t } = useTranslation();
@@ -19,6 +20,9 @@ const ContactPage = () => {
       }}
       className="w-full flex justify-center p-8 md:p-14 lg:p-24 items-center min-h-screen"
     >
+      <Helmet>
+        <title>Contact || MatchMate</title>
+      </Helmet>
       <div className="bg-slate-100 py-20 flex gap-10 flex-col lg:flex-row container mx-auto">
         {/* img */}
         <div className="lg:w-1/2">
