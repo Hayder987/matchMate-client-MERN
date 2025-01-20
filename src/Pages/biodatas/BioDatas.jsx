@@ -29,7 +29,6 @@ const BioDatas = () => {
   const [division, setDivision] = useState("");
   const [sideMenu, setSideMenu] = useState(false)
 
-  console.log(ageValue, biodataType, division);
 
   const { data: allBioData = [], isLoading: allBioLoading, refetch:AllBioDataFetch } = useQuery({
     queryKey: ["allBioData", page, ageValue, biodataType, division],

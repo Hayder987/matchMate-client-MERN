@@ -24,7 +24,7 @@ const SuccessStory = () => {
         return data;
       },
     });
-  console.log(allReviewPublic);
+
 
   return (
     <div>

@@ -42,7 +42,6 @@ const ViewBioData = () => {
             icon: "success",
           });
         } catch (err) {
-          console.log(err);
           Swal.fire({
             icon: "error",
             title: err.message || "An error occurred",
@@ -51,7 +50,7 @@ const ViewBioData = () => {
       }
     });
   };
-  console.log(userBio);
+
 
   return (
     <div className="">

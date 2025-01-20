@@ -39,7 +39,6 @@ const deleteHandler = (id)=>{
           if (result.isConfirmed) {
             try {
               const { data } = await axiosSecure.delete(`/deleteReviewData/${id}`);
-              console.log(data)
               if (data.deletedCount > 0) {
                 reviewFetch();
                 Swal.fire({

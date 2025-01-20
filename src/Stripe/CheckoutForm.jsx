@@ -13,7 +13,6 @@ const CheckoutForm = ({ userContactBioData }) => {
 
   useEffect(() => {
       axiosSecure.post(`/create-payment-intent`, { price: 5 }).then((res) => {
-      console.log(res.data.clientSecret);
       setClientSecret(res.data.clientSecret);
     });
   }, [axiosSecure]);
@@ -61,7 +60,6 @@ const CheckoutForm = ({ userContactBioData }) => {
         icon: "error",
       });
     } else {
-      console.log(paymentIntent);
       if (paymentIntent.status === "succeeded") {
         const reqInfo = {
           userName: userContactBioData?.info?.name,

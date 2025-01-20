@@ -21,7 +21,6 @@ const CheackOutPage = () => {
       },
     });
 
-  console.log(userContactBioData);
 
   return (
     <div className="py-12">
