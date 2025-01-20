@@ -26,7 +26,7 @@ const SuccessCounter = () => {
         title={t("successTitle")}
         desc={t("successDesc")}
       ></SectionTitle>
-      <div className="bg-blue-800 py-24 lg:py-28 px-2">
+      <div className="bg-blue-800 py-24 lg:py-36 px-2">
         {publicLoading ? (
           <LoaderSpinner></LoaderSpinner>
         ) : (

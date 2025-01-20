@@ -5,12 +5,14 @@ import { TbPhotoPlus } from "react-icons/tb";
 import Swal from "sweetalert2";
 import imgUpload from "../../../api/imgUpload";
 import useAxiosSecure from "../../../hooks/axios/useAxiosSecure";
+import DatePicker from "react-datepicker";
 
 const GotMarried = () => {
   const [rating, setRating] = useState(0);
   const [imgPath, setImgPath] = useState("");
   const [imgPreview, setImgPreview] = useState("");
   const axiosSecure = useAxiosSecure();
+  const [startDate, setStartDate ] = useState(new Date())
 
   useEffect(() => {
     if (imgPath) {
@@ -26,6 +28,7 @@ const GotMarried = () => {
     const userbio = form.userbio.value;
     const partnerbio = form.partnerbio.value;
     const storyDesc = form.storyDesc.value;
+
 
     if (!rating) {
       Swal.fire({
@@ -51,29 +54,28 @@ const GotMarried = () => {
         partnerbio,
         storyDesc,
         rating,
-        imgUrl
+        imgUrl,
+        marriageDate:startDate
       };
-       await axiosSecure.post(`/addReviewData`, reviewData)
+      await axiosSecure.post(`/addReviewData`, reviewData);
       Swal.fire({
         position: "top-end",
         icon: "success",
         title: "Your Review Added SuccessFully!",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
-      form.reset()
-      setImgPreview('')
-      setImgPath('')
-      setRating(0)
-      
+      form.reset();
+      setImgPreview("");
+      setImgPath("");
+      setRating(0);
+      setStartDate(new Date)
     } catch (err) {
       Swal.fire({
         icon: "error",
         title: err.message || "An error occurred",
       });
     }
-
-
   };
 
   return (
@@ -104,6 +106,16 @@ const GotMarried = () => {
                   required
                   className=" w-full px-3 py-2 "
                 />
+              </div>
+              <div className="w-full">
+                <label className="block font-medium mb-2">Marriage Date</label>
+                <div className=" w-full ">
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    className="w-full cursor-pointer  px-3 py-2"
+                  />
+                </div>
               </div>
             </div>
             {/* description */}

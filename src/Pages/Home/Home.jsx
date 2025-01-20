@@ -3,6 +3,7 @@ import Banner from "../../Components/HomeComponents/Banner";
 import HowItWork from "../../Components/HomeComponents/HowItWork";
 import PremiumCard from "../../Components/HomeComponents/PremiumCard";
 import SuccessCounter from "../../Components/HomeComponents/SuccessCounter";
+import SuccessStory from "../../Components/HomeComponents/SuccessStory";
 
 
 const Home = () => {
@@ -17,6 +18,10 @@ const Home = () => {
             <SectionDivider></SectionDivider>
            </div>
            <SuccessCounter></SuccessCounter>
+           <SectionDivider></SectionDivider>
+           <div className="container mx-auto">
+            <SuccessStory></SuccessStory>
+           </div>
            <SectionDivider></SectionDivider>
         </div>
     );
