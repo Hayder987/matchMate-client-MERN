@@ -52,7 +52,13 @@
   "aboutLi1" : "Tailored suggestions based on your preferences and values.",
   "aboutLi2" : "Your privacy and security are our top priorities.",
   "aboutLi3" : "Connect with people from various cultural and professional backgrounds.",
-  "aboutLi4" : "Our dedicated support team is always ready to assist you in your journey."
+  "aboutLi4" : "Our dedicated support team is always ready to assist you in your journey.",
+  "contactTitle":"Get in Touch with Us",
+  "contactDes" : "We’d love to hear from you! Whether you have questions, feedback, or need assistance, our team is here to help. Reach out to us through the following channels.",
+  "contactme" : "Contact Information",
+  "con1" : "Our Address",
+  "con2": "Phone Number",
+  "con3" : "Email"
 
 
   
