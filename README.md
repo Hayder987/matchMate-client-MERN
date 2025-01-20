@@ -30,7 +30,7 @@ Experience MatchMate live: [MatchMate Live Site](https://your-live-site-url.com)
 ## 👨‍👩‍👦 Admin Credentials
 
 - **Email:** admin@matchmate.com  
-- **Password:** admin123
+- **Password:** 123456
 
 ## 🌟 Features
 
@@ -66,7 +66,7 @@ Experience MatchMate live: [MatchMate Live Site](https://your-live-site-url.com)
 
 ## 📢 Contribution
 
-We welcome contributions to improve MatchMate! Feel free to submit pull requests or report issues. this Site
+We welcome contributions to improve MatchMate! Feel free to submit pull requests or report issues Here
 
 ### (https://hayder-ali.web.app/)
 
