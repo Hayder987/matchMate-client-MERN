@@ -44,8 +44,16 @@
   "workD4" :"Once you’ve found the right person, take the next step toward a committed relationship. MatchMate supports you in making this life-changing decision with confidence.",
   "successTitle": "MatchMate Success",
   "successDesc" : "Discover how MatchMate has helped countless individuals find their perfect match, leading to meaningful relationships and successful marriages.",
-  "successStory"  : "Success Stories",
-  "successdesc" : "Explore heartwarming marriage success stories shared by couples who found love through MatchMate, inspiring others on their journey."
+  "successStory": "Success Stories",
+  "successdesc" : "Explore heartwarming marriage success stories shared by couples who found love through MatchMate, inspiring others on their journey.",
+  "aboutTitle": "About MatchMate",
+  "aboutDesc": "At MatchMate, we believe that finding your life partner should be a joyful and seamless experience. Our platform is designed to connect individuals based on shared values, interests, and compatibility, making it easier than ever to embark on a lifelong journey of love and companionship.",
+  "aboutWhyTitle" : "Why Choose MatchMate?",
+  "aboutLi1" : "Tailored suggestions based on your preferences and values.",
+  "aboutLi2" : "Your privacy and security are our top priorities.",
+  "aboutLi3" : "Connect with people from various cultural and professional backgrounds.",
+  "aboutLi4" : "Our dedicated support team is always ready to assist you in your journey."
+
 
   
 }
