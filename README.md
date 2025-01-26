@@ -29,7 +29,7 @@ MatchMate is built using the MERN stack and incorporates several powerful npm pa
 
 ## 👨‍👩‍👦 Admin Credentials
 
-- **Email:** admin@matchmate.com  
+- **Email:** admin@matchmate.com
 - **Password:** 123456
 
 ## 🌟 Features
@@ -60,17 +60,21 @@ MatchMate is built using the MERN stack and incorporates several powerful npm pa
    npm install
    ```
 4. Run the application:
+
    ```bash
    npm run dev
    ```
+
+   ## 🔗 Relevant Links
+
+- **GitHub Client Repository:** [MatchMate client Repository](https://github.com/Hayder987/matchMate-client-MERN)
+- **GitHub Server Repository:** [MatchMate server Repository](https://github.com/Hayder987/matchMate-server-MERN)
 
 ## 📢 Contribution
 
 We welcome contributions to improve MatchMate! Feel free to submit pull requests or report issues Here
 
 ### (https://hayder-ali.web.app/)
-
-
 
 ---
 
