@@ -2,7 +2,7 @@ import { FaEdit } from "react-icons/fa";
 import PageMargin from "../../Components/commonComponents/PageMargin";
 import useAuth from "../../Context/useAuth";
 import logo from "../../assets/logo/logo.jpg";
-import { FaStreetView } from "react-icons/fa6";
+import { FaPerson, FaStreetView } from "react-icons/fa6";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import {
   MdDashboardCustomize,
@@ -12,19 +12,20 @@ import {
 } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
 import Swal from "sweetalert2";
-import { NavLink, Outlet, useNavigate } from "react-router";
+import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import useUserData from "../../hooks/data/useUserData";
 import { GiLoveMystery, GiLovers } from "react-icons/gi";
 import { useState } from "react";
 import { TfiLayoutSidebarRight } from "react-icons/tfi";
 import { Helmet } from "react-helmet-async";
+import { IoHome } from "react-icons/io5";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
   const navigate = useNavigate();
   const [userData, refetch] = useUserData();
   const [sideMenu, setSideMenu] = useState(false);
-  const {user} = useAuth()
+  const { user } = useAuth();
 
   const logOutHandler = async () => {
     try {
@@ -50,7 +51,7 @@ const Dashboard = () => {
       <Helmet>
         <title>DashBoard || MatchMate</title>
       </Helmet>
-      <div className="flex relative min-h-[calc(100vh-145px)] ">
+      <div className="flex relative min-h-[100vh] ">
         {/* sidebar desktop */}
         <div className="lg:w-2/12 hidden lg:flex lg:flex-col bg-blue-800 py-6 px-3">
           {/* logo */}
@@ -130,12 +131,18 @@ const Dashboard = () => {
               )}
             </div>
 
-            <div className="flex items-center gap-2">
-              <img src={user?.photoURL} alt="" className="w-8 h-8 rounded-full" />
-              <h1 className="font-semibold text-xl text-gray-100">{user?.displayName}</h1>
+            <div className="flex items-center cursor-pointer gap-2">
+              <img
+                src={user?.photoURL}
+                alt=""
+                className="w-8 h-8 rounded-full"
+              />
+              <h1 className="font-semibold text-xl text-gray-100">
+                {user?.displayName}
+              </h1>
             </div>
 
-            <div className="">
+            <div className="mt-4">
               <button
                 onClick={logOutHandler}
                 className="flex items-center px-2 hover:text-[#ec4899] text-xl uppercase gap-3 font-semibold text-white"
@@ -145,6 +152,22 @@ const Dashboard = () => {
                   <LuLogOut />
                 </span>
               </button>
+            </div>
+            <div className="border-b-2 my-10 border-gray-500"></div>
+            <div className="">
+              <Link to="/">
+                <li className="flex items-center font-semibold text-white gap-1">
+                  <IoHome />
+                  Home
+                </li>
+              </Link>
+              <Link to={"/bioData"}>
+                <li className="flex mt-4 items-center font-semibold text-white gap-1">
+                  {" "}
+                  <FaPerson />
+                  Biodatas
+                </li>
+              </Link>
             </div>
           </div>
         </div>
@@ -163,7 +186,11 @@ const Dashboard = () => {
         </div>
 
         {/* sidebar mobile */}
-        <div className={`w-8/12 duration-500 absolute ${!sideMenu?'-left-[1400px]':"left-2"} top-0 flex flex-col lg:hidden  z-10 bg-blue-800 py-6 px-3`}>
+        <div
+          className={`w-8/12 duration-500 absolute ${
+            !sideMenu ? "-left-[1400px]" : "left-2"
+          } top-0 flex flex-col lg:hidden  z-10 bg-blue-800 py-6 px-3`}
+        >
           {/* logo */}
           <div className="flex items-center gap-3 mb-10">
             <img src={logo} alt="" className="w-8 h-8 rounded-full" />
@@ -178,8 +205,9 @@ const Dashboard = () => {
                 // admin route------------------------->
                 <div className="mb-20">
                   <ul
-                  onClick={() => setSideMenu(false)}
-                   className="text-gray-100 flex flex-col gap-6 cursor-pointer font-semibold">
+                    onClick={() => setSideMenu(false)}
+                    className="text-gray-100 flex flex-col gap-6 cursor-pointer font-semibold"
+                  >
                     <NavLink to="adminDashBoard">
                       <li className="flex items-center gap-2">
                         <MdDashboardCustomize /> Admin Dashboard
@@ -211,9 +239,10 @@ const Dashboard = () => {
               ) : (
                 <div className="mb-20">
                   {/* user Route */}
-                  <ul 
-                  onClick={() => setSideMenu(false)}
-                  className="text-gray-100 flex flex-col gap-6 cursor-pointer font-semibold">
+                  <ul
+                    onClick={() => setSideMenu(false)}
+                    className="text-gray-100 flex flex-col gap-6 cursor-pointer font-semibold"
+                  >
                     <NavLink to="editBio">
                       <li className="flex items-center gap-2">
                         <FaEdit /> Edit Biodata
@@ -245,8 +274,14 @@ const Dashboard = () => {
               )}
             </div>
             <div className="flex items-center gap-2">
-              <img src={user?.photoURL} alt="" className="w-8 h-8 rounded-full" />
-              <h1 className="font-semibold text-xl text-gray-100">{user?.displayName}</h1>
+              <img
+                src={user?.photoURL}
+                alt=""
+                className="w-8 h-8 rounded-full"
+              />
+              <h1 className="font-semibold text-xl text-gray-100">
+                {user?.displayName}
+              </h1>
             </div>
             <div className="">
               <button
