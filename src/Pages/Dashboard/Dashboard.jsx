@@ -150,14 +150,9 @@ const Dashboard = () => {
             <div className="my-8 mt-10">
               <NavLink to="userProfile">
                 <div className="flex items-center cursor-pointer gap-2">
-                  <img
-                    src={user?.photoURL}
-                    alt=""
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <h1 className="font-semibold text-xl text-gray-100">
-                    {user?.displayName}
-                  </h1>
+                 <p className="">
+                  <span className=""></span>
+                 </p>
                 </div>
               </NavLink>
 
@@ -313,7 +308,7 @@ const Dashboard = () => {
               <div className="mt-4">
                 <button
                   onClick={logOutHandler}
-                  className="flex items-center px-2 hover:text-[#ec4899] text-xl uppercase gap-3 font-semibold text-white"
+                  className="flex items-center px-2 hover:text-[#ec4899]  uppercase gap-3 font-semibold text-white"
                 >
                   Logout
                   <span className="text-2xl">
