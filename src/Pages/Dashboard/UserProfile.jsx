@@ -17,7 +17,7 @@ const UserProfile = () => {
         ) : (
           <div className="border-2 p-8 rounded-full">
             <h1 className="text-6xl text-center font-bold">
-              {userData?.name.slice(0, 2).toUpperCase()}
+              {userData?.name?.slice(0, 2).toUpperCase()}
             </h1>
           </div>
         )}

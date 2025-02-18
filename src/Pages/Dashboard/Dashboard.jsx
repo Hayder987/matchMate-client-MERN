@@ -19,6 +19,7 @@ import { useState } from "react";
 import { TfiLayoutSidebarRight } from "react-icons/tfi";
 import { Helmet } from "react-helmet-async";
 import { IoHome } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
@@ -149,14 +150,13 @@ const Dashboard = () => {
             <div className="border-b-2 border-gray-500"></div>
             <div className="my-8 mt-10">
               <NavLink to="userProfile">
-                <div className="flex items-center cursor-pointer gap-2">
-                 <p className="">
-                  <span className=""></span>
+               <p className="flex items-center font-semibold gap-2 text-xl text-white">
+                  <span className=""><CgProfile /></span>
+                  <span className="">user profile</span>
                  </p>
-                </div>
               </NavLink>
 
-              <div className="mt-4">
+              <div className="mt-10">
                 <button
                   onClick={logOutHandler}
                   className="flex items-center px-2 hover:text-[#ec4899] text-xl uppercase gap-3 font-semibold text-white"
