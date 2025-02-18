@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
             {path:"/bioData", element:<BioDatas></BioDatas>},
             {path:"/about", element:<AboutPage></AboutPage>},
             {path:"/contact", element:<ContactPage></ContactPage>},
-            {path:"/details/:id", element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>},
+            {path:"/details/:id", element:<DetailsPage></DetailsPage>},
             {path:"/checkout/:biodataId", element:<PrivateRoute><CheackOutPage></CheackOutPage></PrivateRoute>},
             {path:"dashboard", 
                 element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
