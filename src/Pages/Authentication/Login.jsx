@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../Context/useAuth";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -14,6 +15,8 @@ const Login = () => {
   const navigate = useNavigate()
   const {state} = useLocation()
   const goto = state || "/"
+  const [admin, setAdmin] = useState(false)
+
   const loginHandler = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -96,9 +99,17 @@ const Login = () => {
 
           {/* form */}
           <div className="lg:w-1/2 p-6 md:p-10">
-            <h1 className="text-white font-semibold text-2xl md:text-4xl mb-10">
+            <h1 className="text-white font-semibold text-2xl md:text-4xl mb-6">
               {t("login")}
             </h1>
+            <div className="py-6">
+              <button
+              onClick={()=> setAdmin(!admin)}
+               className="bg-blue-200 py-1 px-5 hover:bg-pink-700 hover:text-white rounded-full">
+                Admin Credentials
+              </button>
+              <p className="text-white text-sm font-extralight">For Testing! Please Don't misuse</p>
+            </div>
             <form onSubmit={loginHandler} className="">
               <div className="mb-8">
                 <label className="text-white uppercase">{t("email")}</label>
@@ -106,6 +117,7 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
+                  defaultValue={`${admin?'admin@matchmate.com':''}`}
                   required
                   className="mt-1 w-full border-b-2 text-white focus:text-black border-blue-800 duration-300 py-1 focus:py-2 outline-none bg-transparent focus:bg-blue-100 px-4 shadow-sm"
                 />
@@ -116,6 +128,7 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
+                  defaultValue={`${admin?'123456':''}`}
                   required
                   className="mt-1 w-full border-b-2 text-white focus:text-black border-blue-800 duration-300 py-1 focus:py-2 outline-none bg-transparent focus:bg-blue-100 px-4 shadow-sm"
                 />

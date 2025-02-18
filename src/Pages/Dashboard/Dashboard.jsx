@@ -150,10 +150,12 @@ const Dashboard = () => {
             <div className="border-b-2 border-gray-500"></div>
             <div className="my-8 mt-10">
               <NavLink to="userProfile">
-               <p className="flex items-center font-semibold gap-2 text-xl text-white">
-                  <span className=""><CgProfile /></span>
+                <p className="flex items-center font-semibold gap-2 text-xl text-white">
+                  <span className="">
+                    <CgProfile />
+                  </span>
                   <span className="">user profile</span>
-                 </p>
+                </p>
               </NavLink>
 
               <div className="mt-10">
@@ -290,18 +292,17 @@ const Dashboard = () => {
             </div>
             <div className="border-b-2 border-gray-500"></div>
             <div className="my-8 mt-10">
-            <NavLink to="userProfile">
-                <div 
-                onClick={() => setSideMenu(false)}
-                className="flex items-center cursor-pointer gap-2">
-                  <img
-                    src={user?.photoURL}
-                    alt=""
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <h1 className="font-semibold text-xl text-gray-100">
-                    {user?.displayName}
-                  </h1>
+              <NavLink to="userProfile">
+                <div
+                  onClick={() => setSideMenu(false)}
+                  className="flex items-center cursor-pointer gap-2"
+                >
+                  <p className="flex items-center font-semibold gap-2 text-xl text-white">
+                    <span className="">
+                      <CgProfile />
+                    </span>
+                    <span className="">user profile</span>
+                  </p>
                 </div>
               </NavLink>
 
