@@ -130,31 +130,8 @@ const Dashboard = () => {
                 </div>
               )}
             </div>
-
-            <div className="flex items-center cursor-pointer gap-2">
-              <img
-                src={user?.photoURL}
-                alt=""
-                className="w-8 h-8 rounded-full"
-              />
-              <h1 className="font-semibold text-xl text-gray-100">
-                {user?.displayName}
-              </h1>
-            </div>
-
-            <div className="mt-4">
-              <button
-                onClick={logOutHandler}
-                className="flex items-center px-2 hover:text-[#ec4899] text-xl uppercase gap-3 font-semibold text-white"
-              >
-                Logout
-                <span className="text-2xl">
-                  <LuLogOut />
-                </span>
-              </button>
-            </div>
-            <div className="border-b-2 my-10 border-gray-500"></div>
-            <div className="">
+            <div className="border-b-2 border-gray-500"></div>
+            <div className="py-4">
               <Link to="/">
                 <li className="flex items-center font-semibold text-white gap-1">
                   <IoHome />
@@ -168,6 +145,33 @@ const Dashboard = () => {
                   Biodatas
                 </li>
               </Link>
+            </div>
+            <div className="border-b-2 border-gray-500"></div>
+            <div className="my-8 mt-10">
+              <NavLink to="userProfile">
+                <div className="flex items-center cursor-pointer gap-2">
+                  <img
+                    src={user?.photoURL}
+                    alt=""
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <h1 className="font-semibold text-xl text-gray-100">
+                    {user?.displayName}
+                  </h1>
+                </div>
+              </NavLink>
+
+              <div className="mt-4">
+                <button
+                  onClick={logOutHandler}
+                  className="flex items-center px-2 hover:text-[#ec4899] text-xl uppercase gap-3 font-semibold text-white"
+                >
+                  Logout
+                  <span className="text-2xl">
+                    <LuLogOut />
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -273,26 +277,50 @@ const Dashboard = () => {
                 </div>
               )}
             </div>
-            <div className="flex items-center gap-2">
-              <img
-                src={user?.photoURL}
-                alt=""
-                className="w-8 h-8 rounded-full"
-              />
-              <h1 className="font-semibold text-xl text-gray-100">
-                {user?.displayName}
-              </h1>
+            <div className="border-b-2 border-gray-500"></div>
+            <div className="py-4">
+              <Link to="/">
+                <li className="flex items-center font-semibold text-white gap-1">
+                  <IoHome />
+                  Home
+                </li>
+              </Link>
+              <Link to={"/bioData"}>
+                <li className="flex mt-4 items-center font-semibold text-white gap-1">
+                  {" "}
+                  <FaPerson />
+                  Biodatas
+                </li>
+              </Link>
             </div>
-            <div className="">
-              <button
-                onClick={logOutHandler}
-                className="flex items-center px-2 hover:text-[#ec4899] text-xl uppercase gap-3 font-semibold text-white"
-              >
-                Logout
-                <span className="text-2xl">
-                  <LuLogOut />
-                </span>
-              </button>
+            <div className="border-b-2 border-gray-500"></div>
+            <div className="my-8 mt-10">
+            <NavLink to="userProfile">
+                <div 
+                onClick={() => setSideMenu(false)}
+                className="flex items-center cursor-pointer gap-2">
+                  <img
+                    src={user?.photoURL}
+                    alt=""
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <h1 className="font-semibold text-xl text-gray-100">
+                    {user?.displayName}
+                  </h1>
+                </div>
+              </NavLink>
+
+              <div className="mt-4">
+                <button
+                  onClick={logOutHandler}
+                  className="flex items-center px-2 hover:text-[#ec4899] text-xl uppercase gap-3 font-semibold text-white"
+                >
+                  Logout
+                  <span className="text-2xl">
+                    <LuLogOut />
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
