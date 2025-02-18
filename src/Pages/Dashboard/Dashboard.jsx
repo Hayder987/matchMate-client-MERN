@@ -50,7 +50,7 @@ const Dashboard = () => {
       <Helmet>
         <title>DashBoard || MatchMate</title>
       </Helmet>
-      <div className="flex container relative mx-auto min-h-[calc(100vh-145px)] ">
+      <div className="flex relative min-h-[calc(100vh-145px)] ">
         {/* sidebar desktop */}
         <div className="lg:w-2/12 hidden lg:flex lg:flex-col bg-blue-800 py-6 px-3">
           {/* logo */}

@@ -19,10 +19,11 @@ const DetailsPage = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+
   const { data: userBio = [], isLoading: userBioLoading } = useQuery({
     queryKey: ["singleUserData", id],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/singleBio/${id}`);
+      const { data } = await serverUrl.get(`/singleBio/${id}`);
       return data;
     },
   });

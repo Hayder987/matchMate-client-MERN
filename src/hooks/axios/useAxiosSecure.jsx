@@ -20,7 +20,7 @@ const useAxiosSecure = () => {
         await navigate("/");
         Swal.fire({
           title: "UnAuthorized Access",
-          text: "You get SignOut ",
+          text: "You Need to sign in ",
           icon: "error",
         });
         await logOutUser();
